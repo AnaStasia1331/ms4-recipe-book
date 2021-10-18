@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    # 'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -81,19 +80,19 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': [
-#             'profile',
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online',
-#         }
-#     }
-# }
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
-SITE_ID = 1
+SITE_ID = 2
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -104,7 +103,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 5
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 SOCIALACCOUNT_QUERY_EMAIL = True
 LOGIN_URL = 'accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/success'
 
 WSGI_APPLICATION = 'recipe_book.wsgi.application'
 

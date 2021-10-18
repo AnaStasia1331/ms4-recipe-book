@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
 ]
 
@@ -102,6 +102,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_MIN_LENGTH = 5
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+SOCIALACCOUNT_QUERY_EMAIL = True
 LOGIN_URL = 'accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 

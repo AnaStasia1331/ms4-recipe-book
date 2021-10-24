@@ -19,6 +19,7 @@
         </div>
     </section>
     <!-- Courses grid-->
+    {% if request.user.is_authenticated %}
     <section class="page-section bg-light" id="courses">
         <div class="container">
             <div class="text-center">
@@ -102,5 +103,7 @@
             </div>
         </div>
     </section>
+    {% else %}     
+    {% endif %}
 {% endblock %}
 

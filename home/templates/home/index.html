@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Add New Recipe section-->
+    <section class="page-section" id="addRecipe">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Add a new recipe</h2>
+                <h3 class="section-subheading text-muted">Write up and store your cherished family recipes, add your
+                    favorite dish or the dessert recipe you created yourself.</h3>
+                <a href="#">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-square fa-stack-2x text-primary"></i>
+                        <i class="fas fa-pencil-alt fa-stack-1x fa-inverse"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Courses grid-->
+    <section class="page-section bg-light" id="courses">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Courses</h2>
+                <h3 class="section-subheading text-muted">Browse by course to find a recipe you want to eat for
+                    breakfast, lunch or dinner.</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Breakfast card-->
+                    <div class="card">
+                        <a class="card-link" href="#">
+                            <div class="card-hover"></div>
+                            <img class="img-fluid" src="../../media/breakfast.jpg" alt="..." />
+                        </a>
+                        <div class="card-caption">
+                            <div class="card-caption-heading">Breakfast</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Lunch card -->
+                    <div class="card">
+                        <a class="card-link" href="#">
+                            <div class="card-hover"></div>
+                            <img class="img-fluid" src="../../media/lunch.jpg" alt="..." />
+                        </a>
+                        <div class="card-caption">
+                            <div class="card-caption-heading">Lunch</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Dinner card-->
+                    <div class="card">
+                        <a class="card-link" href="#">
+                            <div class="card-hover"></div>
+                            <img class="img-fluid" src="../../media/dinner.jpg" alt="..." />
+                        </a>
+                        <div class="card-caption">
+                            <div class="card-caption-heading">Dinner</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                    <!-- Snacks Card -->
+                    <div class="card">
+                        <a class="card-link" href="#">
+                            <div class="card-hover"></div>
+                            <img class="img-fluid" src="../../media/snack.jpg" alt="..." />
+                        </a>
+                        <div class="card-caption">
+                            <div class="card-caption-heading">Snacks</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
+                    <!-- Desserts card -->
+                    <div class="card">
+                        <a class="card-link" href="#">
+                            <div class="card-hover"></div>
+                            <img class="img-fluid" src="../../media/dessert.jpg" alt="..." />
+                        </a>
+                        <div class="card-caption">
+                            <div class="card-caption-heading">Desserts</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <!-- Others card -->
+                    <div class="card">
+                        <a class="card-link" href="#">
+                            <div class="card-hover"></div>
+                            <img class="img-fluid" src="../../media/others.jpg" alt="..." />
+                        </a>
+                        <div class="card-caption">
+                            <div class="card-caption-heading">Others</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

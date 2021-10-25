@@ -3477,10 +3477,13 @@ fieldset:disabled .btn {
   background-color: rgba(255, 255, 255, 0.15);
 }
 
-.dropdown-menu-dark .dropdown-item.active,
-.dropdown-menu-dark .dropdown-item:active {
+.dropdown-menu-dark .dropdown-item.active {
   color: #fff;
   background-color: #ffc800;
+}
+
+.nav-item .dropdown-item.active {
+  background-color: #ffc800 !important;
 }
 
 .dropdown-menu-dark .dropdown-item.disabled,
@@ -3619,7 +3622,7 @@ fieldset:disabled .btn {
   list-style: none;
 }
 
-.nav-link {
+.nav-link, .nav-item .dropdown-toggle {
   display: block;
   padding: 0.5rem 1rem;
   color: #ffc800;
@@ -3628,17 +3631,20 @@ fieldset:disabled .btn {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-link {
+  .nav-link, .nav-item .dropdown-toggle {
     transition: none;
   }
 }
 
 .nav-link:hover,
-.nav-link:focus {
+.nav-link:focus,
+.nav-item .dropdown-toggle:hover,
+.nav-item .dropdown-toggle:focus {
   color: #cca000;
 }
 
-.nav-link.disabled {
+.nav-link.disabled,
+.nav-item .dropdown-toggle:disabled {
   color: #6c757d;
   pointer-events: none;
   cursor: default;
@@ -3648,7 +3654,8 @@ fieldset:disabled .btn {
   border-bottom: 1px solid #dee2e6;
 }
 
-.nav-tabs .nav-link {
+.nav-tabs .nav-link,
+.nav-item .dropdown-toggle {
   margin-bottom: -1px;
   background: none;
   border: 1px solid transparent;
@@ -3759,7 +3766,8 @@ fieldset:disabled .btn {
   list-style: none;
 }
 
-.navbar-nav .nav-link {
+.navbar-nav .nav-link, 
+.nav-item .dropdown-toggle {
   padding-right: 0;
   padding-left: 0;
 }
@@ -3900,7 +3908,8 @@ fieldset:disabled .btn {
     position: absolute;
   }
 
-  .navbar-expand-lg .navbar-nav .nav-link {
+  .navbar-expand-lg .navbar-nav .nav-link,
+  .nav-item .dropdown-toggle {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
@@ -10216,7 +10225,9 @@ p {
   height: 2rem;
 }
 
-#mainNav .navbar-nav .nav-item .nav-link {
+#mainNav .navbar-nav .nav-item .nav-link, 
+.nav-item .dropdown-toggle,
+.nav-item .dropdown-item {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.95rem;
   color: #fff;
@@ -10224,7 +10235,11 @@ p {
 }
 
 #mainNav .navbar-nav .nav-item .nav-link.active,
-#mainNav .navbar-nav .nav-item .nav-link:hover {
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .dropdown-toggle:active,
+#mainNav .navbar-nav .nav-item .dropdown-toggle:hover, 
+#mainNav .navbar-nav .nav-item .dropdown-item:active,
+#mainNav .navbar-nav .nav-item .dropdown-item:hover {
   color: #ffc800;
 }
 

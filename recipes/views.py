@@ -9,3 +9,11 @@ def get_recipes(request):
 
 def add_recipe(request):
     return render(request, 'recipes/add_recipe.html')
+
+
+def edit_recipe(request):
+    return render(request, 'recipes/edit_recipe.html')
+
+
+def view_recipe(request):
+    return render(request, 'recipes/view_recipe.html')

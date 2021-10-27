@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
     <!-- Add New Recipe section-->
     <section class="page-section" id="addRecipe">
@@ -32,7 +34,7 @@
                     <div class="card">
                         <a class="card-link" href="#">
                             <div class="card-hover"></div>
-                            <img class="img-fluid" src="../../media/breakfast.jpg" alt="..." />
+                            <img class="img-fluid" src="{% static 'img/breakfast.jpg' %}" alt="..." />
                         </a>
                         <div class="card-caption">
                             <div class="card-caption-heading">Breakfast</div>
@@ -44,7 +46,7 @@
                     <div class="card">
                         <a class="card-link" href="#">
                             <div class="card-hover"></div>
-                            <img class="img-fluid" src="../../media/lunch.jpg" alt="..." />
+                            <img class="img-fluid" src="{% static 'img/lunch.jpg' %}" alt="..." />
                         </a>
                         <div class="card-caption">
                             <div class="card-caption-heading">Lunch</div>
@@ -56,7 +58,7 @@
                     <div class="card">
                         <a class="card-link" href="#">
                             <div class="card-hover"></div>
-                            <img class="img-fluid" src="../../media/dinner.jpg" alt="..." />
+                            <img class="img-fluid" src="{% static 'img/dinner.jpg' %}" alt="..." />
                         </a>
                         <div class="card-caption">
                             <div class="card-caption-heading">Dinner</div>
@@ -68,7 +70,7 @@
                     <div class="card">
                         <a class="card-link" href="#">
                             <div class="card-hover"></div>
-                            <img class="img-fluid" src="../../media/snack.jpg" alt="..." />
+                            <img class="img-fluid" src="{% static 'img/snack.jpg' %}" alt="..." />
                         </a>
                         <div class="card-caption">
                             <div class="card-caption-heading">Snacks</div>
@@ -80,7 +82,7 @@
                     <div class="card">
                         <a class="card-link" href="#">
                             <div class="card-hover"></div>
-                            <img class="img-fluid" src="../../media/dessert.jpg" alt="..." />
+                            <img class="img-fluid" src="{% static 'img/dessert.jpg' %}" alt="..." />
                         </a>
                         <div class="card-caption">
                             <div class="card-caption-heading">Desserts</div>
@@ -92,7 +94,7 @@
                     <div class="card">
                         <a class="card-link" href="#">
                             <div class="card-hover"></div>
-                            <img class="img-fluid" src="../../media/others.jpg" alt="..." />
+                            <img class="img-fluid" src="{% static 'img/others.jpg' %}" alt="..." />
                         </a>
                         <div class="card-caption">
                             <div class="card-caption-heading">Others</div>

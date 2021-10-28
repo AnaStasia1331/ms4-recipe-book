@@ -1,10 +1,19 @@
 from django.shortcuts import render
+from .models import Recipe, Course
 
 # Create your views here.
 
 
 def get_recipes(request):
-    return render(request, 'recipes/all_recipes.html')
+    """ A view to show all recipes """
+
+    recipes = Recipe.objects.all()
+
+    context = {
+        'recipes': recipes,
+    }
+    
+    return render(request, 'recipes/all_recipes.html', context)
 
 
 def add_recipe(request):

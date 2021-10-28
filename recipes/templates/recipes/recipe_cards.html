@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block content %}
     <section class="page-section bg-light" id="recipeCards">
         <div class="container">
@@ -12,11 +14,17 @@
                 {% for recipe in recipes %}
                     <div class="col-lg-3 col-sm-6 mb-4">
                         <div class="card">
+                            {% if recipe.image %}
                             <a href="#">
-                                <img src="../media/chef-cap.png" class="card-img-top" alt="standard recipe image">
+                                <img class="card-img-top" src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
                             </a>
+                            {% else %}
+                            <a href="#">
+                                <img class="card-img-top" src="{% static 'img/chef-cap.png' %}" alt="{{ recipe.recipe_name }}">
+                            </a>
+                            {% endif %}
                             <div class="card-body text-center">
-                                <h5 class="card-title text-truncate">Recipe name</h5>
+                                <h5 class="card-title text-truncate">{{ recipe.recipe_name }}</h5>
                                 <hr>
                                 <div class="cardIcons">
                                     <div class="d-flex justify-content-center">
@@ -38,7 +46,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Are you sure you want to delete <strong>recipe name</strong> recipe?
+                                                    Are you sure you want to delete <strong>{{ recipe.recipe_name }}</strong> recipe?
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>

@@ -1,0 +1,43 @@
+[{
+        "model": "recipes.course",
+        "pk": 1,
+        "fields": {
+            "course_choice": "breakfast"
+        }
+    },
+    {
+        "model": "recipes.course",
+        "pk": 2,
+        "fields": {
+            "course_choice": "lunch"
+        }
+    },
+    {
+        "model": "recipes.course",
+        "pk": 3,
+        "fields": {
+            "course_choice": "dinner"
+        }
+    },
+    {
+        "model": "recipes.course",
+        "pk": 4,
+        "fields": {
+            "course_choice": "snacks"
+        }
+    },
+    {
+        "model": "recipes.course",
+        "pk": 5,
+        "fields": {
+            "course_choice": "desserts"
+        }
+    },
+    {
+        "model": "recipes.course",
+        "pk": 6,
+        "fields": {
+            "course_choice": "others"
+        }
+    }
+]

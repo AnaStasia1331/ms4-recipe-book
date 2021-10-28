@@ -12,12 +12,20 @@ def get_recipes(request):
     context = {
         'recipes': recipes,
     }
-    
+
     return render(request, 'recipes/all_recipes.html', context)
 
 
 def add_recipe(request):
-    return render(request, 'recipes/add_recipe.html')
+    """ A view to add a new recipe """
+
+    courses = Course.objects.all()
+
+    context = {
+        'courses': courses,
+    }
+
+    return render(request, 'recipes/add_recipe.html', context)
 
 
 def edit_recipe(request):

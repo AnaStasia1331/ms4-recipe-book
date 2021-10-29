@@ -38,4 +38,11 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
+
+    // Overwrite the default attributes of filestyle() in bootstrap-filestyle plugin 
+    $('#image').filestyle({
+        size : 'lg',
+        btnClass: 'btn-warning',
+        text: 'Upload'
+    });
 });

@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Recipe, Course
+from .forms import AddRecipeForm
 
 # Create your views here.
 
@@ -19,10 +22,23 @@ def get_recipes(request):
 def add_recipe(request):
     """ A view to add a new recipe """
 
-    courses = Course.objects.all()
+    if request.method == 'POST':
+        form = AddRecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added recipe!')
+            return redirect('get_recipes')
+        else:
+            messages.error(request,
+                       ('Failed to add recipe. Please ensure the form is valid.'))
+    else:
+        form = AddRecipeForm()
 
+    courses = Course.objects.all()
+    
     context = {
         'courses': courses,
+        'form': form,
     }
 
     return render(request, 'recipes/add_recipe.html', context)

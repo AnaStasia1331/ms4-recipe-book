@@ -45,4 +45,8 @@ window.addEventListener('DOMContentLoaded', event => {
         btnClass: 'btn-warning',
         text: 'Upload'
     });
+
+    // $(".bootstrap-filestyle").find('').remove();
+    // $(".bootstrap-filestyle").addClass('');
+
 });

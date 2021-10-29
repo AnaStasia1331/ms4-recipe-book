@@ -26,7 +26,7 @@
                                 <select class="form-select" aria-label="Courses" id="course_name" name="course_name" required>
                                     <option value="" disabled selected>Select a course</option>
                                     {% for course in courses %}
-                                    <option value="{{ course.course_choice }}">{{ course.course_choice }}</option>
+                                    <option value="{{ course.course_choice }}">{{ course.course_choice|capfirst }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

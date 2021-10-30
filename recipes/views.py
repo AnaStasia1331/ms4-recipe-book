@@ -70,5 +70,15 @@ def edit_recipe(request, recipe_id):
     return render(request, 'recipes/edit_recipe.html', context)
 
 
-def view_recipe(request):
-    return render(request, 'recipes/view_recipe.html')
+def view_recipe(request, recipe_id):
+    """View a recipe selected from All Recipes page"""
+
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    form = RecipeForm(instance=recipe)
+
+    context = {
+        'form': form,
+        'recipe': recipe,
+    }
+
+    return render(request, 'recipes/view_recipe.html', context)

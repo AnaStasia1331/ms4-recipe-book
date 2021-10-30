@@ -3,7 +3,7 @@ from .models import Recipe
 from django.forms import Select, Textarea, TextInput
 
 
-class AddRecipeForm(forms.ModelForm):
+class RecipeForm(forms.ModelForm):
 
     class Meta:
         model = Recipe

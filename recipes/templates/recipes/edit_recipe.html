@@ -11,43 +11,39 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Edit Recipe</h2>
             </div>
-            <form id="recipeForm" method="POST" action="">
+            <form id="recipeForm" method="POST" enctype="multipart/form-data" action="{% url 'edit_recipe' recipe.id%}">
+                {% csrf_token %}
                 <div class="row align-items-stretch mb-5">
                     <div class="col-md-12">
                         <fieldset>
                             <div class="form-group">
                                 <!-- Name input-->
-                                <label for="recipe_name">Recipe Name*</label>
-                                <input class="form-control" value="" id="recipe_name" name="recipe_name" type="text" maxlength="50" required/>
+                                <label for="recipe_name">Recipe name*</label>
+                                {{ form.recipe_name}}
                             </div>
                             <div class="form-group">
-                                <!-- Course dropdown -->
-                                <label for="course_name">Courses*</label>
-                                <select class="form-select" aria-label="Courses" id="course_name" name="course_name" required>
-                                    <option value="" disabled>Select a course</option>
-                                    {% for course in courses %}
-                                        {% if course.course_name == recipe.course_name %}
-                                            <option value="" selected></option>
-                                        {% else %}
-                                            <option value=""></option>
-                                        {% endif %}
-                                    {% endfor %}
-                                </select>
+                                <label for="course">Courses*</label>
+                                {{ form.course}}
                             </div>
                             <div class="form-group form-group-textarea">
                                 <!-- Ingredients textarea -->
                                 <label for="ingredients">Ingredients</label>
-                                <textarea class="form-control" id="ingredients" name="ingredients"></textarea>
+                                {{ form.ingredients}}
                             </div>
                             <div class="form-group form-group-textarea">
                                 <!-- Steps textarea -->
                                 <label for="steps">Steps</label>
-                                <textarea class="form-control" id="steps" name="steps"></textarea>
+                                {{ form.steps}}
+                            </div>
+                            <div class="form-group">
+                                <!-- Preparation Time input -->
+                                <label for="preparation_time">Preparation time</label>
+                                {{ form.preparation_time}}
                             </div>
                             <div class="form-group mb-md-0">
-                                <!-- Preparation Time input-->
-                                <label for="preparation_time">Preparation Time</label>
-                                <input class="form-control" value="" id="preparation_time" name="preparation_time" type="time"/>
+                                <!-- Uload a recipe image -->
+                                <label for="image">Choose a recipe image</label>
+                                {{ form.image}}
                             </div>
                         </fieldset>
                     </div>

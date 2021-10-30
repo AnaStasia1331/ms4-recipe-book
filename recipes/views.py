@@ -82,3 +82,12 @@ def view_recipe(request, recipe_id):
     }
 
     return render(request, 'recipes/view_recipe.html', context)
+
+
+def delete_recipe(request, recipe_id):
+    """Delete a recipe selected from All Recipes page"""
+
+    recipe = get_object_or_404(Recipe, pk=recipe_id)
+    recipe.delete()
+
+    return redirect('get_recipes')

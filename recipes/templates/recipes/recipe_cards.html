@@ -35,10 +35,10 @@
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <a href="#">
-                                            <i class="far fa-trash-alt" data-bs-toggle="modal" data-bs-target=""></i>
+                                            <i class="far fa-trash-alt" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal{{ recipe.id }}"></i>
                                         </a>
                                         <!-- Confirm Delete Modal -->
-                                        <div class="modal fade" id="#" tabindex="-1" aria-hidden="true">
+                                        <div class="modal fade" id="confirmDeletionModal{{ recipe.id }}" tabindex="-1" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content text-center">
                                                 <div class="modal-header">
@@ -50,7 +50,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                <a href="#" class="btn btn-primary">Yes</a>
+                                                <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-primary">Yes</a>
                                                 </div>
                                             </div>
                                             </div>

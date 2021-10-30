@@ -8,7 +8,8 @@ class Recipe(models.Model):
     class Meta:
         ordering = ['recipe_name']
 
-    course = models.ForeignKey('Course', on_delete=models.CASCADE)
+    # Check this when delete recipe is implemented Docs make me 🤯
+    course = models.ForeignKey('Course', on_delete=models.PROTECT)
     recipe_name = models.CharField(max_length=50)
     ingredients = models.TextField(null=True, blank=True)
     steps = models.TextField(null=True, blank=True)

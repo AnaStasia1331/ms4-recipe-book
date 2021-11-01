@@ -19,11 +19,11 @@
                     <div class="col-lg-3 col-sm-6 mb-4">
                         <div class="card">
                             {% if recipe.image %}
-                            <a href="#">
+                            <a href="{% url 'view_recipe' recipe.id %}">
                                 <img class="card-img-top" src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
                             </a>
                             {% else %}
-                            <a href="#">
+                            <a href="{% url 'view_recipe' recipe.id %}">
                                 <img class="card-img-top" src="{% static 'img/chef-cap.png' %}" alt="{{ recipe.recipe_name }}">
                             </a>
                             {% endif %}
@@ -33,10 +33,10 @@
                                 <hr>
                                 <div class="cardIcons">
                                     <div class="d-flex justify-content-center">
-                                        <a href="{% url 'view_recipe' recipe.id %}">
+                                        <a href="{% url 'view_recipe' recipe.id %}#recipeForm">
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="{% url 'edit_recipe' recipe.id %}">
+                                        <a href="{% url 'edit_recipe' recipe.id %}#recipeForm">
                                             <i class="far fa-edit"></i>
                                         </a>
                                         <a href="#">

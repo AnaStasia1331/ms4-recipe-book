@@ -11,7 +11,7 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">View Recipe</h2>
             </div>
-            <form id="recipeForm" method="GET" action="#">
+            <form id="recipeForm" method="GET" action="{% url 'edit_recipe' recipe.id%}#recipeForm">
                 <div class="row align-items-stretch mb-5">
                     <div class="col-md-12">
                         <fieldset disabled>

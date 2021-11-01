@@ -22,7 +22,7 @@
                 </div>
                 <!-- Save and Cancel buttons-->
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary btn-lg text-uppercase">Cancel</a>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-primary btn-lg text-uppercase">Cancel</a>
                     <button class="btn btn-primary btn-lg text-uppercase" id="saveButton" type="submit">Save</button>
                 </div>
             </form>

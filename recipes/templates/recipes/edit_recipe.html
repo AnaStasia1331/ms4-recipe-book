@@ -16,35 +16,7 @@
                 <div class="row align-items-stretch mb-5">
                     <div class="col-md-12">
                         <fieldset>
-                            <div class="form-group">
-                                <!-- Name input-->
-                                <label for="recipe_name">Recipe name*</label>
-                                {{ form.recipe_name}}
-                            </div>
-                            <div class="form-group">
-                                <label for="course">Courses*</label>
-                                {{ form.course}}
-                            </div>
-                            <div class="form-group form-group-textarea">
-                                <!-- Ingredients textarea -->
-                                <label for="ingredients">Ingredients</label>
-                                {{ form.ingredients}}
-                            </div>
-                            <div class="form-group form-group-textarea">
-                                <!-- Steps textarea -->
-                                <label for="steps">Steps</label>
-                                {{ form.steps}}
-                            </div>
-                            <div class="form-group">
-                                <!-- Preparation Time input -->
-                                <label for="preparation_time">Preparation time</label>
-                                {{ form.preparation_time}}
-                            </div>
-                            <div class="form-group mb-md-0">
-                                <!-- Uload a recipe image -->
-                                <label for="image">Choose a recipe image</label>
-                                {{ form.image}}
-                            </div>
+                            {% include "recipes/recipe_form.html" %}
                         </fieldset>
                     </div>
                 </div>

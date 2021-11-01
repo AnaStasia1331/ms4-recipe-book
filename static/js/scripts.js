@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
     // Overwrite the default attributes of filestyle() in bootstrap-filestyle plugin 
-    $('#image').filestyle({
+    $('#id_image').filestyle({
         size : 'lg',
         btnClass: 'btn-warning',
         text: 'Upload'

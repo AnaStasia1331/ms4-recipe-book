@@ -1,6 +1,6 @@
 from django import forms
 from .models import Recipe
-from django.forms import Select, Textarea, TextInput
+from django.forms import Select, Textarea, TextInput, FileInput
 
 
 class RecipeForm(forms.ModelForm):
@@ -28,10 +28,9 @@ class RecipeForm(forms.ModelForm):
                 'class': "form-control",
                 'type': "time",
             }),
-            'image': TextInput(attrs={
-                'id': "image",
+            'image': FileInput(attrs={
+                'id': "id_image",
                 'class': "form-control filestyle",
-                'type': "file",
             }),
         }
         

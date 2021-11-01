@@ -68,7 +68,8 @@
                 {% endfor %}
                 {% else %}
                     <div class="col-12 text-center text-muted">
-                        <h5 class="section-subheading text-muted">No recipes have been added yet.</h5>
+                        <h3 class="section-subheading text-muted">You haven't added any recipes yet.
+                            <a href="{% url 'add_recipe' %}">Add a new recipe.</a></h3>
                     </div>
                 {% endif %}
             </div>

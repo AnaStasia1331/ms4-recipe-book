@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class Recipe(models.Model):
     class Meta:
         ordering = ['recipe_name']
 
-    # Check this when delete recipe is implemented Docs make me 🤯
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default='')
     course = models.ForeignKey('Course', on_delete=models.PROTECT)
     recipe_name = models.CharField(max_length=50)
     ingredients = models.TextField(null=True, blank=True)

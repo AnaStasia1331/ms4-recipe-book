@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib import messages
 from .models import Recipe, Course
@@ -8,9 +7,8 @@ from .forms import RecipeForm
 
 
 def get_recipes(request):
-    """ A view to show all recipes """
-
-    recipes = Recipe.objects.all()
+    """ A view to show all recipes that belongs to logged in user """
+    recipes = Recipe.objects.filter(user=request.user)
 
     context = {
         'recipes': recipes,
@@ -21,16 +19,18 @@ def get_recipes(request):
 
 def add_recipe(request):
     """ A view to add a new recipe """
-
     if request.method == 'POST':
-        form = RecipeForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully added recipe!')
-            return redirect('get_recipes')
-        else:
-            messages.error(request,
-                       ('Failed to add the recipe. Please ensure the form is valid.'))
+        if request.user.is_authenticated:
+            form = RecipeForm(request.POST, request.FILES)
+            if form.is_valid():
+                obj = form.save(commit=False)
+                obj.user = request.user
+                obj.save()
+                messages.success(request, 'Successfully added recipe!')
+                return redirect('get_recipes')
+            else:
+                messages.error(request,
+                        ('Failed to add the recipe. Please ensure the form is valid.'))
     else:
         form = RecipeForm()
 

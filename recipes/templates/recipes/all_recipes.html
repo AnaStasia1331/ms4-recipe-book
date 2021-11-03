@@ -3,7 +3,11 @@
 {% load static %}
 
 {% block masthead_content %}
-<div class="masthead-heading">Managing recipes couldn't be easier!</div>
+    <header class="masthead">
+        <div class="container"> 
+            <div class="masthead-heading">Managing recipes couldn't be easier!</div>
+        </div>
+    </header>
 {% endblock %}
 
 {% block content %}
@@ -15,10 +19,15 @@
         </div>
         {% if recipes|length > 0 %}
         <div class="row">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button class="btn btn-primary" type="button">Sort by Name <span><i class="fa fa-sort"></i></span>
-                </button>
-                <div class="dropdown">
+            <div class="col-sm-4">
+                <input type="search" placeholder="Start typing.." name="search" class="form-control searchbox-input" required="">
+            </div>
+            <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center"> -->
+                <!-- <div id="sortButton"> 
+                    <button class="btn btn-primary" onclick = "sortRecipesByName()" type="button">Sort by Name <span><i class="fa fa-sort"></i></span>
+                    </button>
+                </div> -->
+                <div id="filterButton">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter by
                         Course
                         <span class="caret"></span></button>
@@ -27,7 +36,7 @@
                         <li>
                             <a class="dropdown-item">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <input type="checkbox" class="custom-control-input" value="Breakfast" id="checkbox1">
                                     <label class="custom-control-label" for="checkbox1">Breakfast</label>
                                 </div>
                             </a>
@@ -35,46 +44,46 @@
                         <li>
                             <a class="dropdown-item">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
-                                    <label class="custom-control-label" for="checkbox1">Lunch</label>
+                                    <input type="checkbox" class="custom-control-input" value="Lunch" id="checkbox2">
+                                    <label class="custom-control-label" for="checkbox2">Lunch</label>
                                 </div>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
-                                    <label class="custom-control-label" for="checkbox1">Dinner</label>
+                                    <input type="checkbox" class="custom-control-input" value="Dinner" id="checkbox3">
+                                    <label class="custom-control-label" for="checkbox3">Dinner</label>
                                 </div>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
-                                    <label class="custom-control-label" for="checkbox1">Snacks</label>
+                                    <input type="checkbox" class="custom-control-input" value="Snacks" id="checkbox4">
+                                    <label class="custom-control-label" for="checkbox4">Snacks</label>
                                 </div>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
-                                    <label class="custom-control-label" for="checkbox1">Desserts</label>
+                                    <input type="checkbox" class="custom-control-input" value="Desserts" id="checkbox5">
+                                    <label class="custom-control-label" for="checkbox5">Desserts</label>
                                 </div>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
-                                    <label class="custom-control-label" for="checkbox1">Others</label>
+                                    <input type="checkbox" class="custom-control-input" id="checkbox6">
+                                    <label class="custom-control-label" for="checkbox6">Others</label>
                                 </div>
                             </a>
                         </li>
                     </ul>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         <div class="row">
             {% for recipe in recipes %}
@@ -90,7 +99,7 @@
                     </a>
                     {% endif %}
                     <div class="card-body text-center">
-                        <h5 class="card-title text-truncate">{{ recipe.recipe_name }}</h5>
+                        <h5 class="card-title text-truncate recipe-name">{{ recipe.recipe_name }}</h5>
                         <h6 class="card-title text-truncate">{{ recipe.course|capfirst }}</h5>
                             <hr>
                             <div class="cardIcons">

@@ -46,7 +46,43 @@ window.addEventListener('DOMContentLoaded', event => {
         text: 'Upload'
     });
 
-    // $(".bootstrap-filestyle").find('').remove();
-    // $(".bootstrap-filestyle").addClass('');
+    // search a recipe by entered value;
+    // similar to the solution provided here: https://www.codeply.com/go/bp/mqPlhqQsg7
+    $('.searchbox-input').on('keyup', function () {
+        var filter = $(this).val(); // get the value of the input, which we filter on
+        $('.container').find(".card:not(:contains(" + filter + "))").parent().hide();
+    });
+
+
+    // const filterByCourse = function() {
+    //     var sel = $('input[type=checkbox]:checked').map(function(_, el) {
+    //         return $(el).val();
+    //     }).get();
+    //     console.log(sel)
+    //     console.log(sel.length == 0)
+    //     $('.container').find(".card").parent().show();
+    //     if (sel.length == 0) {
+    //         // $('.container').find(".card").parent().css('display', '');
+    //         // $('.container').find(".card").parent().show();
+    //     } else {
+    //         let filter = "";
+    //         for (var i = 0; i < sel.length; i++) {
+    //             console.log(sel[i])
+    //             filter += `.card:not(:contains('${sel[i]}')), `;
+    //             console.log(filter)
+    //         }
+    //         console.log(filter)
+    //         filter = filter.slice(0,-2);
+    //         console.log(filter)
+    //         $('.container').find(filter).parent().hide();
+    //     }
+    // }
+
+    // $('#checkbox1').click(filterByCourse)
+    // $('#checkbox2').click(filterByCourse)
+    // $('#checkbox3').click(filterByCourse)
+    // $('#checkbox4').click(filterByCourse)
+    // $('#checkbox5').click(filterByCourse)
+    // $('#checkbox6').click(filterByCourse)
 
 });

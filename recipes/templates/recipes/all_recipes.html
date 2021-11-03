@@ -3,76 +3,146 @@
 {% load static %}
 
 {% block masthead_content %}
-    <div class="masthead-heading">Managing recipes couldn't be easier!</div>
+<div class="masthead-heading">Managing recipes couldn't be easier!</div>
 {% endblock %}
 
 {% block content %}
-    <section class="page-section bg-light" id="recipeCards">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-heading text-uppercase">All recipes</h2>
-                <h3 class="section-subheading text-muted">Manage your recipes by viewing, editing or deleting them.</h3>
+<section class="page-section bg-light" id="recipeCards">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">All recipes</h2>
+            <h3 class="section-subheading text-muted">Manage your recipes by viewing, editing or deleting them.</h3>
+        </div>
+        {% if recipes|length > 0 %}
+        <div class="row">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <button class="btn btn-primary" type="button">Sort by Name <span><i class="fa fa-sort"></i></span>
+                </button>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter by
+                        Course
+                        <span class="caret"></span></button>
+                    <!-- source https://mdbootstrap.com/snippets/jquery/mdbootstrap/821050#html-tab-view -->
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <label class="custom-control-label" for="checkbox1">Breakfast</label>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <label class="custom-control-label" for="checkbox1">Lunch</label>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <label class="custom-control-label" for="checkbox1">Dinner</label>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <label class="custom-control-label" for="checkbox1">Snacks</label>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <label class="custom-control-label" for="checkbox1">Desserts</label>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                    <label class="custom-control-label" for="checkbox1">Others</label>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="row">
-                {% if recipes|length > 0 %}
-                {% for recipe in recipes %}
-                    <div class="col-lg-3 col-sm-6 mb-4">
-                        <div class="card">
-                            {% if recipe.image %}
-                            <a href="{% url 'view_recipe' recipe.id %}">
-                                <img class="card-img-top" src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
-                            </a>
-                            {% else %}
-                            <a href="{% url 'view_recipe' recipe.id %}">
-                                <img class="card-img-top" src="{% static 'img/chef-cap.png' %}" alt="{{ recipe.recipe_name }}">
-                            </a>
-                            {% endif %}
-                            <div class="card-body text-center">
-                                <h5 class="card-title text-truncate">{{ recipe.recipe_name }}</h5>
-                                <h6 class="card-title text-truncate">{{ recipe.course|capfirst }}</h5>
-                                <hr>
-                                <div class="cardIcons">
-                                    <div class="d-flex justify-content-center">
-                                        <a href="{% url 'view_recipe' recipe.id %}#recipeForm">
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                        <a href="{% url 'edit_recipe' recipe.id %}#recipeForm">
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        <a href="#">
-                                            <i class="far fa-trash-alt" data-bs-toggle="modal" data-bs-target="#confirmDeletionModal{{ recipe.id }}"></i>
-                                        </a>
-                                        <!-- Confirm Delete Modal -->
-                                        <div class="modal fade" id="confirmDeletionModal{{ recipe.id }}" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
+        </div>
+        <div class="row">
+            {% for recipe in recipes %}
+            <div class="col-lg-3 col-sm-6 mb-4">
+                <div class="card">
+                    {% if recipe.image %}
+                    <a href="{% url 'view_recipe' recipe.id %}">
+                        <img class="card-img-top" src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
+                    </a>
+                    {% else %}
+                    <a href="{% url 'view_recipe' recipe.id %}">
+                        <img class="card-img-top" src="{% static 'img/chef-cap.png' %}" alt="{{ recipe.recipe_name }}">
+                    </a>
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-truncate">{{ recipe.recipe_name }}</h5>
+                        <h6 class="card-title text-truncate">{{ recipe.course|capfirst }}</h5>
+                            <hr>
+                            <div class="cardIcons">
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% url 'view_recipe' recipe.id %}#recipeForm">
+                                        <i class="far fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'edit_recipe' recipe.id %}#recipeForm">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="far fa-trash-alt" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeletionModal{{ recipe.id }}"></i>
+                                    </a>
+                                    <!-- Confirm Delete Modal -->
+                                    <div class="modal fade" id="confirmDeletionModal{{ recipe.id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content text-center">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title">Confirm delete</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title">Confirm delete</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    Are you sure you want to delete <strong>{{ recipe.recipe_name }}</strong> recipe?
+                                                    Are you sure you want to delete
+                                                    <strong>{{ recipe.recipe_name }}</strong> recipe?
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                                                <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-primary">Yes</a>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">No</button>
+                                                    <a href="{% url 'delete_recipe' recipe.id %}"
+                                                        class="btn btn-primary">Yes</a>
                                                 </div>
-                                            </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                     </div>
-                {% endfor %}
-                {% else %}
-                    <div class="col-12 text-center text-muted">
-                        <h3 class="section-subheading text-muted">You haven't added any recipes yet.
-                            <a href="{% url 'add_recipe' %}">Add a new recipe.</a></h3>
-                    </div>
-                {% endif %}
+                </div>
             </div>
+            {% endfor %}
+
+
         </div>
-    </section>
+        {% else %}
+        <div class="col-12 text-center text-muted">
+            <h3 class="section-subheading text-muted">You haven't added any recipes yet.
+                <a href="{% url 'add_recipe' %}">Add a new recipe.</a></h3>
+        </div>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

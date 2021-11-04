@@ -85,66 +85,8 @@
                 </div>
             <!-- </div> -->
         </div>
-        <div class="row">
-            {% for recipe in recipes %}
-            <div class="col-lg-3 col-sm-6 mb-4">
-                <div class="card">
-                    {% if recipe.image %}
-                    <a href="{% url 'view_recipe' recipe.id %}">
-                        <img class="card-img-top" src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
-                    </a>
-                    {% else %}
-                    <a href="{% url 'view_recipe' recipe.id %}">
-                        <img class="card-img-top" src="{% static 'img/chef-cap.png' %}" alt="{{ recipe.recipe_name }}">
-                    </a>
-                    {% endif %}
-                    <div class="card-body text-center">
-                        <h5 class="card-title text-truncate recipe-name">{{ recipe.recipe_name }}</h5>
-                        <h6 class="card-title text-truncate">{{ recipe.course|capfirst }}</h5>
-                            <hr>
-                            <div class="cardIcons">
-                                <div class="d-flex justify-content-center">
-                                    <a href="{% url 'view_recipe' recipe.id %}#recipeForm">
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                    <a href="{% url 'edit_recipe' recipe.id %}#recipeForm">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="far fa-trash-alt" data-bs-toggle="modal"
-                                            data-bs-target="#confirmDeletionModal{{ recipe.id }}"></i>
-                                    </a>
-                                    <!-- Confirm Delete Modal -->
-                                    <div class="modal fade" id="confirmDeletionModal{{ recipe.id }}" tabindex="-1"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content text-center">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Confirm delete</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete
-                                                    <strong>{{ recipe.recipe_name }}</strong> recipe?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">No</button>
-                                                    <a href="{% url 'delete_recipe' recipe.id %}"
-                                                        class="btn btn-primary">Yes</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-
-
+        <div class="row" id="recipes">
+            <!-- ajax generated data will be populated here-->
         </div>
         {% else %}
         <div class="col-12 text-center text-muted">
@@ -154,4 +96,72 @@
         {% endif %}
     </div>
 </section>
+
+<div class="col-lg-3 col-sm-6 mb-4" style="display: none;" id="card-template">
+    <div class="card">
+        <!-- {% if recipe.image %}
+        <a href="{% url 'view_recipe' recipe.id %}">
+            <img class="card-img-top" src="{{ recipe.image.url }}" alt="{{ recipe.recipe_name }}">
+        </a>
+        {% else %} -->
+        <a href="__ url 'view_recipe' 123__">
+            <img class="card-img-top" src="{% static 'img/chef-cap.png' %}" alt="__recipe.recipe_name__">
+        </a>
+        <!-- {% endif %} -->
+        <div class="card-body text-center">
+            <h5 class="card-title text-truncate recipe-name">__recipe.recipe_name__</h5>
+            <h6 class="card-title text-truncate">__ recipe.course|capfirst __</h5>
+                <hr>
+                <div class="cardIcons">
+                    <div class="d-flex justify-content-center">
+                        <a href="__ url 'view_recipe' recipe.id __#recipeForm">
+                            <i class="far fa-eye"></i>
+                        </a>
+                        <a href="__ url 'edit_recipe' recipe.id __#recipeForm">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a href="#">
+                            <i class="far fa-trash-alt" data-bs-toggle="modal"
+                                data-bs-target="#confirmDeletionModal__recipe.id __"></i>
+                        </a>
+                        <!-- Confirm Delete Modal -->
+                        <div class="modal fade" id="confirmDeletionModal__ recipe.id__" tabindex="-1"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content text-center">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Confirm delete</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete
+                                        <strong>__ recipe.recipe_name __</strong> recipe?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">No</button>
+                                        <a href="__ url 'delete_recipe' recipe.id __"
+                                            class="btn btn-primary">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block scripts %}
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<!-- Bootstrap filestyle plugin -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/2.1.0/bootstrap-filestyle.js"> </script>
+<!-- Core theme JS-->
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/all_recipes_population.js' %}"></script>
 {% endblock %}

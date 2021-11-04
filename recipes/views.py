@@ -1,5 +1,7 @@
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect,  get_object_or_404
 from django.contrib import messages
+from django.core import serializers
 from .models import Recipe, Course
 from .forms import RecipeForm
 
@@ -15,6 +17,14 @@ def get_recipes(request):
     }
 
     return render(request, 'recipes/all_recipes.html', context)
+
+
+def get_recipes_json(request):
+    """ A view to show all recipes that belongs to logged in user """
+    recipes = Recipe.objects.filter(user=request.user)
+
+    json = serializers.serialize('json', recipes)
+    return JsonResponse(json, safe=False)
 
 
 def add_recipe(request):

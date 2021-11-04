@@ -7,7 +7,7 @@
 
 {% block content %}
 <!-- Reused and adapted this solution https://bootsnipp.com/snippets/GavAo  -->
-<div id="logreg-forms">
+<div class="logreg-forms">
   <form class="form-signin login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>

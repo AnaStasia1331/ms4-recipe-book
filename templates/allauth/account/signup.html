@@ -5,17 +5,26 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
-
+<div class="logreg-forms">
+  <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign Up</h1>
+    {% include "account/errors.html" %}
+    <input type="email" name="email" id="id_email" class="form-control" placeholder="Email address" autocomplete="email"
+      required="" autofocus="">
+    <input type="text" id="id_username" class="form-control" name="username" placeholder="Username"
+      autocomplete="username" required="" autofocus="">
+    <input type="password" id="id_password1" name="password1" class="form-control" placeholder="Password"
+      autocomplete="new-password" required="" autofocus="">
+    <input type="password" id="id_password2" name="password2" class="form-control" placeholder="Repeat Password"
+      required="" autofocus="">
+    <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+    <a href="{% url 'account_login' %}" style="text-decoration: none;" id="cancel_signup"><i
+        class="fas fa-angle-left"></i> Back</a>
+  </form>
+  <br>
+</div>
 {% endblock %}

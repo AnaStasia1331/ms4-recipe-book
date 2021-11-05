@@ -46,14 +46,6 @@ window.addEventListener('DOMContentLoaded', event => {
         text: 'Upload'
     });
 
-    // search a recipe by entered value;
-    // similar to the solution provided here: https://www.codeply.com/go/bp/mqPlhqQsg7
-    $('.searchbox-input').on('keyup', function () {
-        var filter = $(this).val(); // get the value of the input, which we filter on
-        $('.container').find(".card:not(:contains(" + filter + "))").parent().hide();
-    });
-
-
     // const filterByCourse = function() {
     //     var sel = $('input[type=checkbox]:checked').map(function(_, el) {
     //         return $(el).val();

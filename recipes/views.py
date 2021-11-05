@@ -1,17 +1,30 @@
-from django.shortcuts import render, redirect,  get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from .models import Recipe, Course
 from .forms import RecipeForm
+from django.db.models import Q
 
 # Create your views here.
 
 
 def get_recipes(request):
-    """ A view to show all recipes that belongs to logged in user """
+    """ A view to show all recipes that belongs to logged in user, search queries """
     recipes = Recipe.objects.filter(user=request.user)
+    query = None
+
+    # Source: Code Institute Project - Boutique Ado
+    if request.GET:
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                return redirect(reverse('get_recipes'))
+            
+            queries = Q(recipe_name__icontains=query) | Q(course__course_choice__icontains=query)
+            recipes = recipes.filter(queries)
 
     context = {
         'recipes': recipes,
+        'search_term': query,
     }
 
     return render(request, 'recipes/all_recipes.html', context)

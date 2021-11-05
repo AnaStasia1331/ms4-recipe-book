@@ -8,11 +8,17 @@ from django.db.models import Q
 
 
 def get_recipes(request):
-    """ A view to show all recipes that belongs to logged in user, search queries """
+    """ A view to show all recipes that belongs to logged in user, with search queries and filtering """
     recipes = Recipe.objects.filter(user=request.user)
     query = None
+    course = None
 
     # Source: Code Institute Project - Boutique Ado
+    if 'course' in request.GET:
+        course = request.GET['course'].split(',')
+        recipes = recipes.filter(course__course_choice__in=course)
+        course = Course.objects.filter(course_choice__in=course)
+
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
@@ -25,9 +31,10 @@ def get_recipes(request):
     context = {
         'recipes': recipes,
         'search_term': query,
+        'selected_course': course,
     }
 
-    return render(request, 'recipes/all_recipes.html', context)
+    return render(request, 'recipes/my_recipes.html', context)
 
 
 def add_recipe(request):

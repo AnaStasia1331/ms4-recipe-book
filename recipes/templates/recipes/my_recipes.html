@@ -14,12 +14,12 @@
 <section class="page-section bg-light" id="recipeCards">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-heading text-uppercase">All recipes</h2>
+            <h2 class="section-heading text-uppercase">My recipes</h2>
             <h3 class="section-subheading text-muted">Manage your recipes by viewing, editing or deleting them.</h3>
         </div>
-        {% if recipes|length > 0 %}
         <div class="row">
             <div class="d-grid gap-4 d-md-flex justify-content-md-center">
+                {% if recipes|length > 0 %}
                 <form method="GET" action="{% url 'get_recipes' %}#recipeCards">
                     <div class="input-group">
                         <div class="form-outline col-10">
@@ -32,65 +32,95 @@
                         </button>
                     </div>
                 </form>
-                <div id="filterButton" class="text-center">
+                <div class="text-center">
                     <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter by
                         Course
                         <span class="caret"></span></button>
                     <!-- source https://mdbootstrap.com/snippets/jquery/mdbootstrap/821050#html-tab-view -->
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="Breakfast"
-                                        id="checkbox1">
-                                    <label class="custom-control-label" for="checkbox1">Breakfast</label>
-                                </div>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}#recipeCards">All
+                                recipes
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="Lunch" id="checkbox2">
-                                    <label class="custom-control-label" for="checkbox2">Lunch</label>
-                                </div>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=breakfast#recipeCards">
+                                Breakfast</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=lunch#recipeCards">
+                                Lunch
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="Dinner" id="checkbox3">
-                                    <label class="custom-control-label" for="checkbox3">Dinner</label>
-                                </div>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=dinner#recipeCards">
+                                Dinner
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="Snacks" id="checkbox4">
-                                    <label class="custom-control-label" for="checkbox4">Snacks</label>
-                                </div>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=snacks#recipeCards">
+                                Snacks
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" value="Desserts" id="checkbox5">
-                                    <label class="custom-control-label" for="checkbox5">Desserts</label>
-                                </div>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=desserts#recipeCards">
+                                Desserts
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="checkbox6">
-                                    <label class="custom-control-label" for="checkbox6">Others</label>
-                                </div>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=others#recipeCards">
+                                Others
                             </a>
                         </li>
                     </ul>
                 </div>
+                {% else %}
+                <div class="text-center">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter by
+                        Course
+                        <span class="caret"></span></button>
+                    <!-- source https://mdbootstrap.com/snippets/jquery/mdbootstrap/821050#html-tab-view -->
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}#recipeCards">All
+                                recipes
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=breakfast#recipeCards">
+                                Breakfast</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=lunch#recipeCards">
+                                Lunch
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=dinner#recipeCards">
+                                Dinner
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=snacks#recipeCards">
+                                Snacks
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=desserts#recipeCards">
+                                Desserts
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=others#recipeCards">
+                                Others
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
         </div>
+        {% if recipes|length > 0 %}
         <div class="row">
             {% for recipe in recipes %}
             <div class="col-lg-3 col-sm-6 mb-4">
@@ -106,7 +136,7 @@
                     {% endif %}
                     <div class="card-body text-center">
                         <h5 class="card-title text-truncate recipe-name">{{ recipe.recipe_name }}</h5>
-                        <h6 class="card-title text-truncate">{{ recipe.course|capfirst }}</h5>
+                        <h6 class="card-title text-truncate">{{ recipe.course }}</h5>
                             <hr>
                             <div class="cardIcons">
                                 <div class="d-flex justify-content-center">
@@ -149,13 +179,12 @@
                 </div>
             </div>
             {% endfor %}
-
-
         </div>
         {% else %}
         <div class="col-12 text-center text-muted">
-            <h3 class="section-subheading text-muted">You haven't added any recipes yet.
-                <a href="{% url 'add_recipe' %}">Add a new recipe.</a></h3>
+            <p class="section-subheading text-muted">You haven't added any recipes yet.
+                <a href="{% url 'add_recipe' %}">Add a new recipe.</a>
+            </p>
         </div>
         {% endif %}
     </div>

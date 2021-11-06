@@ -3,33 +3,37 @@ from django.contrib import messages
 from .models import Recipe, Course
 from .forms import RecipeForm
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
+@login_required
 def get_recipes(request):
     """ A view to show all recipes that belongs to logged in user, with search queries and filtering """
-    recipes = Recipe.objects.filter(user=request.user)
     query = None
     course = None
 
     # Source: Code Institute Project - Boutique Ado
     if 'course' in request.GET:
         course = request.GET['course'].split(',')
-        recipes = recipes.filter(course__course_choice__in=course)
+        recipes = Recipe.objects.filter(course__course_choice__in=course, user=request.user)
         course = Course.objects.filter(course_choice__in=course)
+    elif request.GET and request.GET['q']:
+        query = request.GET['q']
+        queries = Q(recipe_name__icontains=query) | Q(course__course_choice__icontains=query)
+        recipes = Recipe.objects.filter(queries, user=request.user)
+    else:
+        recipes = Recipe.objects.filter(user=request.user)
 
-    if request.GET:
-        if 'q' in request.GET:
-            query = request.GET['q']
-            if not query:
-                return redirect(reverse('get_recipes'))
-            
-            queries = Q(recipe_name__icontains=query) | Q(course__course_choice__icontains=query)
-            recipes = recipes.filter(queries)
+    if Recipe.objects.filter(user=request.user).count() > 0:
+        has_recipes = True
+    else:
+        has_recipes = False
 
     context = {
         'recipes': recipes,
+        'has_recipes': has_recipes,
         'search_term': query,
         'selected_course': course,
     }
@@ -37,6 +41,7 @@ def get_recipes(request):
     return render(request, 'recipes/my_recipes.html', context)
 
 
+@login_required
 def add_recipe(request):
     """ A view to add a new recipe """
     if request.method == 'POST':
@@ -64,6 +69,7 @@ def add_recipe(request):
     return render(request, 'recipes/add_recipe.html', context)
 
 
+@login_required
 def edit_recipe(request, recipe_id):
     """Edit a recipe selected from All Recipes page"""
 
@@ -90,6 +96,7 @@ def edit_recipe(request, recipe_id):
     return render(request, 'recipes/edit_recipe.html', context)
 
 
+@login_required
 def view_recipe(request, recipe_id):
     """View a recipe selected from All Recipes page"""
 
@@ -104,6 +111,7 @@ def view_recipe(request, recipe_id):
     return render(request, 'recipes/view_recipe.html', context)
 
 
+@login_required
 def delete_recipe(request, recipe_id):
     """Delete a recipe selected from All Recipes page"""
 

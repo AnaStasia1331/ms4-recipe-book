@@ -19,11 +19,10 @@
         </div>
         <div class="row">
             <div class="d-grid gap-4 d-md-flex justify-content-md-center">
-                {% if recipes|length > 0 %}
                 <form method="GET" action="{% url 'get_recipes' %}#recipeCards">
                     <div class="input-group">
                         <div class="form-outline col-10">
-                            <input type="text" placeholder="Start typing.." name="q" class="form-control" />
+                            <input type="text" placeholder="Start typing.." name="q" class="form-control" value="{{ search_term|default_if_none:"" }}"/>
                         </div>
                         <button type="submit" class="form-control btn btn-primary">
                             <span class="icon">
@@ -74,50 +73,6 @@
                         </li>
                     </ul>
                 </div>
-                {% else %}
-                <div class="text-center">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">Filter by
-                        Course
-                        <span class="caret"></span></button>
-                    <!-- source https://mdbootstrap.com/snippets/jquery/mdbootstrap/821050#html-tab-view -->
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}#recipeCards">All
-                                recipes
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=breakfast#recipeCards">
-                                Breakfast</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=lunch#recipeCards">
-                                Lunch
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=dinner#recipeCards">
-                                Dinner
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=snacks#recipeCards">
-                                Snacks
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=desserts#recipeCards">
-                                Desserts
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{% url 'get_recipes' %}?course=others#recipeCards">
-                                Others
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                {% endif %}
             </div>
         </div>
         {% if recipes|length > 0 %}
@@ -136,7 +91,7 @@
                     {% endif %}
                     <div class="card-body text-center">
                         <h5 class="card-title text-truncate recipe-name">{{ recipe.recipe_name }}</h5>
-                        <h6 class="card-title text-truncate">{{ recipe.course }}</h5>
+                        <h6 class="card-title text-truncate">{{ recipe.course|capfirst }}</h5>
                             <hr>
                             <div class="cardIcons">
                                 <div class="d-flex justify-content-center">
@@ -179,6 +134,11 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        {% elif has_recipes %}
+        <div class="col-12 text-center text-muted">
+            <p class="section-subheading text-muted">Your search didn't bring back any recipes.
+            </p>
         </div>
         {% else %}
         <div class="col-12 text-center text-muted">

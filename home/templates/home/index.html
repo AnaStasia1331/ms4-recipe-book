@@ -11,6 +11,10 @@
                 <h3 class="section-subheading text-muted">Write up and store your cherished family recipes, add your
                     favorite dish or the dessert recipe you created yourself.</h3>
                 {% if request.user.is_authenticated %}
+                <form action="{% url 'checkout' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" id="checkout-button">Checkout</button>
+                  </form>
                 <a href="{% url 'add_recipe' %}">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-square fa-stack-2x text-primary"></i>

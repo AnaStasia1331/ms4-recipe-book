@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib import auth
 import stripe
 from django.conf import settings
 
@@ -9,14 +10,10 @@ from django.conf import settings
 def checkout(request):
     try:
         stripe.api_key = settings.STRIPE_API_KEY
-        WEBSITE_DOMAIN = "http://127.0.0.1:8000"
         checkout_session = stripe.checkout.Session.create(
-            customer_email='customer@example.com',
-            submit_type='donate',
+            customer_email=request.user.email,
+            submit_type='pay',
             billing_address_collection='auto',
-            shipping_address_collection={
-              'allowed_countries': ['US', 'CA'],
-            },
             line_items=[
                 {
                     # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
@@ -28,11 +25,11 @@ def checkout(request):
               'card',
             ],
             mode='payment',
-            success_url=WEBSITE_DOMAIN + reverse('success'),
-            cancel_url=WEBSITE_DOMAIN + reverse('cancel'),
+            success_url=settings.WEBSITE_DOMAIN + reverse('success'),
+            cancel_url=settings.WEBSITE_DOMAIN + reverse('cancel'),
         )
     except Exception as e:
-        return str(e)
+        return e.message
 
     return redirect(checkout_session.url, code=303)
 

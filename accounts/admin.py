@@ -1,13 +1,14 @@
 from django.contrib import admin
-# from accounts.models import UserAccount
+from accounts.models import UserAccount
 
 
-# # Register your models here.
+# Register your models here.
 
-# class UserAccountAdmin(admin.ModelAdmin):
-#     list_display = (
-#         'user',
-#     )
+class UserAccountAdmin(admin.ModelAdmin):
+    list_display = (
+        'user',
+        'has_paid',
+    )
 
 
-# admin.site.register(UserAccount, UserAccountAdmin)
+admin.site.register(UserAccount, UserAccountAdmin)

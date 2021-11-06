@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.http import require_GET, require_POST
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import auth
 import stripe
 from django.conf import settings
+from accounts.models import UserAccount
 
 # Create your views here.
 
 
+@login_required
+@require_POST
 def checkout(request):
     try:
         stripe.api_key = settings.STRIPE_API_KEY
@@ -25,7 +30,7 @@ def checkout(request):
               'card',
             ],
             mode='payment',
-            success_url=settings.WEBSITE_DOMAIN + reverse('success'),
+            success_url=settings.WEBSITE_DOMAIN + reverse('success') + "?token=54321",
             cancel_url=settings.WEBSITE_DOMAIN + reverse('cancel'),
         )
     except Exception as e:
@@ -34,9 +39,27 @@ def checkout(request):
     return redirect(checkout_session.url, code=303)
 
 
+@login_required
+@require_GET
 def success(request):
+    # validate token is correct
+    token = request.GET['token']
+    if token:
+        # try:
+        #     account = UserAccount.objects.get(user=request.user)
+        # except UserAccount.DoesNotExist:
+        account = UserAccount.objects.create()
+        account.user = request.user
+        account.has_paid = True
+        account.save()
+    else:
+        pass
+        # who do you think you are punk?
+    # return success page
     return render(request, 'checkout/success.html')
 
 
+@login_required
+@require_GET
 def cancel(request):
     return render(request, 'checkout/cancel.html')

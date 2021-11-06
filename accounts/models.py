@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 
 class UserAccount(models.Model):
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
+    has_paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

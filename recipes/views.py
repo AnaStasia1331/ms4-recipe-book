@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+
+from accounts.models import UserAccount
 from .models import Recipe, Course
 from .forms import RecipeForm
 from django.db.models import Q
@@ -60,10 +62,19 @@ def add_recipe(request):
         form = RecipeForm()
 
     courses = Course.objects.all()
+    recipe_count = Recipe.objects.filter(user=request.user).count()
+
+    try:
+        account = UserAccount.objects.get(user=request.user)
+        has_paid = account.has_paid
+    except UserAccount.DoesNotExist:
+        has_paid = False
     
     context = {
         'courses': courses,
         'form': form,
+        'recipe_count': recipe_count,
+        'has_paid': has_paid,
     }
 
     return render(request, 'recipes/add_recipe.html', context)

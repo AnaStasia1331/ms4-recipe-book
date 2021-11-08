@@ -1,3 +1,4 @@
+import uuid
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_GET, require_POST
 from django.contrib.auth.decorators import login_required
@@ -13,6 +14,16 @@ from accounts.models import UserAccount
 @login_required
 @require_POST
 def checkout(request):
+    # this needs to be refactored
+    try:
+        account = UserAccount.objects.get(user=request.user)
+    except UserAccount.DoesNotExist:
+        user = auth.get_user(request)
+        account = UserAccount.objects.create(user=user)
+
+    account.token = uuid.uuid4().hex
+    account.save()
+
     try:
         stripe.api_key = settings.STRIPE_API_KEY
         checkout_session = stripe.checkout.Session.create(
@@ -30,7 +41,7 @@ def checkout(request):
               'card',
             ],
             mode='payment',
-            success_url=settings.WEBSITE_DOMAIN + reverse('success') + "?token=54321",
+            success_url=settings.WEBSITE_DOMAIN + reverse('success') + '?token=' + account.token,
             cancel_url=settings.WEBSITE_DOMAIN + reverse('cancel'),
         )
     except Exception as e:
@@ -45,16 +56,19 @@ def success(request):
     # validate token is correct
     token = request.GET['token']
     if token:
-        # try:
-        #     account = UserAccount.objects.get(user=request.user)
-        # except UserAccount.DoesNotExist:
-        account = UserAccount.objects.create()
-        account.user = request.user
-        account.has_paid = True
-        account.save()
+        try:
+            account = UserAccount.objects.get(user=request.user)
+        except UserAccount.DoesNotExist:
+            user = auth.get_user(request)
+            account = UserAccount.objects.create(user=user)
+        if account.token == token:
+            account.has_paid = True
+            account.save()
+        else:
+            return render(request, 'checkout/cancel.html')
     else:
         pass
-        # who do you think you are punk?
+        # show error page if token doens't exist
     # return success page
     return render(request, 'checkout/success.html')
 

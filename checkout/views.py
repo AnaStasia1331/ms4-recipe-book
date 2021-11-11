@@ -41,8 +41,8 @@ def checkout(request):
               'card',
             ],
             mode='payment',
-            success_url=settings.WEBSITE_DOMAIN + reverse('success') + '?token=' + account.token,
-            cancel_url=settings.WEBSITE_DOMAIN + reverse('cancel'),
+            success_url='https://' + settings.WEBSITE_DOMAIN + reverse('success') + '?token=' + account.token,
+            cancel_url='https://' + settings.WEBSITE_DOMAIN + reverse('cancel'),
         )
     except Exception as e:
         return e.message

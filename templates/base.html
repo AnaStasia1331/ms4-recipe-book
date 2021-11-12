@@ -39,11 +39,10 @@
                                 <li class="nav-item"><a class="nav-link" href="{% url 'get_recipes' %}">My Recipes</a></li>
                                 <li class="nav-item dropdown">
                                     <a class="dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink"
-                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My account
+                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, {{ user.username }}
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'account_settings' %}">Settings</a></li>
                                     </ul>
                                 </li>
                             {% else %}

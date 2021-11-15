@@ -13,7 +13,8 @@ class RecipeForm(forms.ModelForm):
         widgets = {
             'recipe_name': TextInput(attrs={
                 'class': 'form-control',
-                'style': 'max-length: 50;'
+                'style': 'max-length: 50;',
+                'required': True
             }),
             'course': Select(attrs={
                 'class': "form-select",
@@ -37,6 +38,6 @@ class RecipeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RecipeForm, self).__init__(*args, **kwargs)
-        # to get rid of the empty course dropdown value, set empty_label to None
+        # to get rid of the empty course dropdown value,
+        # set empty_label to None
         self.fields['course'].empty_label = None
-        

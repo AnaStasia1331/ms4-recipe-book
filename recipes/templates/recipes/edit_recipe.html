@@ -17,6 +17,7 @@
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">Edit Recipe</h2>
             </div>
+            {% include "recipes/message.html" %}
             <form id="recipeForm" method="POST" enctype="multipart/form-data" action="{% url 'edit_recipe' recipe.id%}">
                 {% csrf_token %}
                 <div class="row align-items-stretch mb-5">

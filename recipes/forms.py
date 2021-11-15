@@ -12,25 +12,31 @@ class RecipeForm(forms.ModelForm):
             'steps', 'preparation_time', 'image']
         widgets = {
             'recipe_name': TextInput(attrs={
-                'class': "form-control",
+                'class': 'form-control',
                 'style': 'max-length: 50;'
             }),
             'course': Select(attrs={
                 'class': "form-select",
+                'style': 'text-transform: capitalize;'
             }),
             'ingredients': Textarea(attrs={
-                'class': "form-control",
+                'class': 'form-control',
             }),
             'steps': Textarea(attrs={
-                'class': "form-control",
+                'class': 'form-control',
             }),
             'preparation_time': TextInput(attrs={
-                'class': "form-control",
-                'type': "time",
+                'class': 'form-control',
+                'type': 'time',
             }),
             'image': FileInput(attrs={
-                'id': "id_image",
-                'class': "form-control filestyle",
+                'id': 'id_image',
+                'class': 'form-control filestyle',
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(RecipeForm, self).__init__(*args, **kwargs)
+        # to get rid of the empty course dropdown value, set empty_label to None
+        self.fields['course'].empty_label = None
         

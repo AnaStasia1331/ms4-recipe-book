@@ -62,6 +62,7 @@ def add_recipe(request):
         form = RecipeForm()
 
     courses = Course.objects.all()
+    # On the 4th recipe creation, the modal window will be displayed asking to make a payment for the website
     recipe_count = Recipe.objects.filter(user=request.user).count()
 
     try:

@@ -96,7 +96,7 @@ def edit_recipe(request, recipe_id):
             messages.success(request,
                            ('Failed to update the recipe. '
                             'Please ensure the form is valid.'))
-            # return redirect('get_recipes')
+            return redirect('get_recipes')
         else:
             messages.error(request,
                            ('Failed to update the recipe. '

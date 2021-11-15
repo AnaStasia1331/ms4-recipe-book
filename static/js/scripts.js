@@ -38,43 +38,4 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
-
-    // Overwrite the default attributes of filestyle() in bootstrap-filestyle plugin 
-    $('#id_image').filestyle({
-        size : 'lg',
-        btnClass: 'btn-warning',
-        text: 'Upload'
-    });
-
-    // const filterByCourse = function() {
-    //     var sel = $('input[type=checkbox]:checked').map(function(_, el) {
-    //         return $(el).val();
-    //     }).get();
-    //     console.log(sel)
-    //     console.log(sel.length == 0)
-    //     $('.container').find(".card").parent().show();
-    //     if (sel.length == 0) {
-    //         // $('.container').find(".card").parent().css('display', '');
-    //         // $('.container').find(".card").parent().show();
-    //     } else {
-    //         let filter = "";
-    //         for (var i = 0; i < sel.length; i++) {
-    //             console.log(sel[i])
-    //             filter += `.card:not(:contains('${sel[i]}')), `;
-    //             console.log(filter)
-    //         }
-    //         console.log(filter)
-    //         filter = filter.slice(0,-2);
-    //         console.log(filter)
-    //         $('.container').find(filter).parent().hide();
-    //     }
-    // }
-
-    // $('#checkbox1').click(filterByCourse)
-    // $('#checkbox2').click(filterByCourse)
-    // $('#checkbox3').click(filterByCourse)
-    // $('#checkbox4').click(filterByCourse)
-    // $('#checkbox5').click(filterByCourse)
-    // $('#checkbox6').click(filterByCourse)
-
 });

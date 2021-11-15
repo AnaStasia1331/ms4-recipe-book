@@ -5143,11 +5143,12 @@ fieldset:disabled .btn {
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 1rem 1rem;
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
+  background-color: #ffc800;
 }
 
 .modal-header .btn-close {
@@ -5165,6 +5166,9 @@ fieldset:disabled .btn {
   flex: 1 1 auto;
   padding: 1rem;
 }
+.modal-body svg {
+  color: #ffc800;
+}
 
 .modal-footer {
   display: flex;
@@ -5176,6 +5180,10 @@ fieldset:disabled .btn {
   border-top: 1px solid #dee2e6;
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.modal-footer .btn-primary {
+  color:#000
 }
 
 .modal-footer>* {
@@ -10512,7 +10520,7 @@ transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   margin: 0 auto;
 }
 
-/* Mobile */
+/* Login page, mobile */
 
 @media screen and (max-width:500px){
   .logreg-forms{

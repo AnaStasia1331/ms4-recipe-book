@@ -5,11 +5,11 @@
 
 $(document).ready(function(){
     // prevent modal closing by pressing escape or clicking outside
-    $("#myModal").modal({
+    $("#checkoutModal").modal({
         backdrop: 'static',
         keyboard: false
     });
     // open the modal window automatically
-    $('#myModal').modal('toggle')
+    $('#checkoutModal').modal('toggle')
 });
 

@@ -43,5 +43,3 @@ class RecipeForm(forms.ModelForm):
         # to get rid of the empty course dropdown value,
         # set empty_label to None
         self.fields['course'].empty_label = None
-        # add custom error messages
-        self.fields['recipe_name'].error_messages['required'] = 'This field is required.'

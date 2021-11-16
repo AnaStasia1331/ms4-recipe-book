@@ -14,13 +14,7 @@ from accounts.models import UserAccount
 @login_required
 @require_POST
 def checkout(request):
-    # this needs to be refactored
-    try:
-        account = UserAccount.objects.get(user=request.user)
-    except UserAccount.DoesNotExist:
-        user = auth.get_user(request)
-        account = UserAccount.objects.create(user=user)
-
+    account = get_or_create_account(request)
     account.token = uuid.uuid4().hex
     account.save()
 
@@ -41,8 +35,9 @@ def checkout(request):
               'card',
             ],
             mode='payment',
-            success_url='https://' + settings.WEBSITE_DOMAIN + reverse('success') + '?token=' + account.token,
-            cancel_url='https://' + settings.WEBSITE_DOMAIN + reverse('cancel'),
+            success_url=settings.WEBSITE_DOMAIN + \
+            reverse('success') + '?token=' + account.token,
+            cancel_url=settings.WEBSITE_DOMAIN + reverse('cancel'),
         )
     except Exception as e:
         return e.message
@@ -56,11 +51,7 @@ def success(request):
     # validate token is correct
     token = request.GET['token']
     if token:
-        try:
-            account = UserAccount.objects.get(user=request.user)
-        except UserAccount.DoesNotExist:
-            user = auth.get_user(request)
-            account = UserAccount.objects.create(user=user)
+        account = get_or_create_account(request)
         if account.token == token:
             account.has_paid = True
             account.save()
@@ -77,3 +68,12 @@ def success(request):
 @require_GET
 def cancel(request):
     return render(request, 'checkout/cancel.html')
+
+
+def get_or_create_account(request):
+    try:
+        account = UserAccount.objects.get(user=request.user)
+    except UserAccount.DoesNotExist:
+        user = auth.get_user(request)
+        account = UserAccount.objects.create(user=user)
+    return account

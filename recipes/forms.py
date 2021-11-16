@@ -14,7 +14,9 @@ class RecipeForm(forms.ModelForm):
             'recipe_name': TextInput(attrs={
                 'class': 'form-control',
                 'style': 'max-length: 50;',
-                'required': True
+                'required': True,
+                'oninvalid': "this.setCustomValidity('Please fill in the recipe name field.')",
+                'oninput': "this.setCustomValidity('')"
             }),
             'course': Select(attrs={
                 'class': "form-select",
@@ -41,3 +43,5 @@ class RecipeForm(forms.ModelForm):
         # to get rid of the empty course dropdown value,
         # set empty_label to None
         self.fields['course'].empty_label = None
+        # add custom error messages
+        self.fields['recipe_name'].error_messages['required'] = 'This field is required.'

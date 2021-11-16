@@ -93,9 +93,6 @@ def edit_recipe(request, recipe_id):
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
-            messages.success(request,
-                           ('Failed to update the recipe. '
-                            'Please ensure the form is valid.'))
             return redirect('get_recipes')
         else:
             messages.error(request,

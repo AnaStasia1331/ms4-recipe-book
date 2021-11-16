@@ -1,7 +1,11 @@
 {% if messages %}
 <div class="messages" style="text-align:center;">
   {% for message in messages %}
-  <p style="color:darkred; font-weight: 500; font-size: 1.125rem;" class="{{ message.tags }}">{{ message }}</p>
+    {% with message.level as level %}
+      {% if level == 40 %}
+      <p style="color:darkred; font-weight: 500; font-size: 1.125rem;" class="{{ message.tags }}">{{ message }}</p>
+      {% endif %}
+    {% endwith %}
   {% endfor %}
 </div>
 {% endif %}

@@ -5,19 +5,23 @@
 {% block head_title %}{% trans "Verify Your Email Address" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Verify Your Email Address" %}</h1>
+<div style="text-align: center" class="container">
+    <br>
+    <div class="alert alert-info fade show">
+        <h5 class="h3 mb-3 font-weight-normal">Verify Your Email Address</h5>
+        {% url 'account_email' as email_url %}
 
-{% url 'account_email' as email_url %}
+        <p>{% blocktrans %}This part of the site requires us to verify that
+            you are who you claim to be. For this purpose, we require that you
+            verify ownership of your email address. {% endblocktrans %}</p>
 
-<p>{% blocktrans %}This part of the site requires us to verify that
-you are who you claim to be. For this purpose, we require that you
-verify ownership of your email address. {% endblocktrans %}</p>
+        <p>{% blocktrans %}We have sent an email to you for
+            verification. Please click on the link inside this email. Please
+            contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
 
-<p>{% blocktrans %}We have sent an email to you for
-verification. Please click on the link inside this email. Please
-contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
-
-<p>{% blocktrans %}<strong>Note:</strong> you can still <a href="{{ email_url }}">change your email address</a>.{% endblocktrans %}</p>
-
-
+        <p>{% blocktrans %}<strong>Note:</strong> you can still <a style="color:#0c5460;" href="{{ email_url }}">change
+                your email
+                address</a>.{% endblocktrans %}</p>
+    </div>
+</div>
 {% endblock %}

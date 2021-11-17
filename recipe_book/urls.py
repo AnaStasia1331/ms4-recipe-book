@@ -25,3 +25,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('recipes/', include('recipes.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "recipe_book.views.page_not_found_view"

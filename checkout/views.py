@@ -15,9 +15,12 @@ from accounts.models import UserAccount
 @require_POST
 def checkout(request):
     account = get_or_create_account(request)
+    # generate token and save it for the user account
     account.token = uuid.uuid4().hex
     account.save()
 
+    # created based on the Stripe sample integration
+    # https://stripe.com/docs/checkout/quickstart
     try:
         stripe.api_key = settings.STRIPE_API_KEY
         checkout_session = stripe.checkout.Session.create(
@@ -26,7 +29,7 @@ def checkout(request):
             billing_address_collection='auto',
             line_items=[
                 {
-                    # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+                    # Provide the Price ID set up in Stripe
                     'price': 'price_1JsnjmKjt9KdFmTFVRRJuuVQ',
                     'quantity': 1,
                 },
@@ -58,9 +61,7 @@ def success(request):
         else:
             return render(request, 'checkout/cancel.html')
     else:
-        pass
-        # show error page if token doens't exist
-    # return success page
+        return render(request, 'checkout/cancel.html')
     return render(request, 'checkout/success.html')
 
 

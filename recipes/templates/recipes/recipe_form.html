@@ -27,3 +27,19 @@
     <label for="image">Choose a recipe image</label>
     {{ form.image }}
 </div>
+<!-- Info modal is hidden by default and triggered from the Add/Edit recipe pages when user uploads invalid image file. -->
+<div class="modal fade" id="informModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-header">
+          <h5 class="modal-title">Info</h5>
+        </div>
+        <div class="modal-body">
+          Message here
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

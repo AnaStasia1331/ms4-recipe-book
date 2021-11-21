@@ -21,29 +21,10 @@ window.addEventListener('DOMContentLoaded', event => {
                 return false;
             }
 
-            // if (!isImgOrientationLandscape(file)) {
-            //     return false;
-            // }
-
-             // Show Info modal when user tries to upload images of non-landscape orientation 
-             // Similar to the source https://stackoverflow.com/a/41063194/10928662
-             const img = new Image();
-             img.onload = function () {
-                 const height = this.height;
-                 const width = this.width;
-                 URL.revokeObjectURL(this.src);
-                 if (height > width || width == height) {
-                     updateAndToggleInfoModal('Recommended image orientation',
-                     'To ensure your image display well, we recommend to upload images of ladscape orientation where width is more than height.',
-                     'Okay');
-                     return false;
-                 }
-                 URL.revokeObjectURL(this.src);
-             };
-             var objectURL = URL.createObjectURL(file);
-             img.src = objectURL;
-
-
+            if (isInvalidImgOrientation(file)) {
+                return false;
+            }
+        
             // Update the Info modal title, body message, button name and toggle it 
             function updateAndToggleInfoModal(title, message, buttonName) {
                 $('.modal-title').text(title);
@@ -83,7 +64,26 @@ window.addEventListener('DOMContentLoaded', event => {
                 }
             }
 
-
+            function isInvalidImgOrientation(file) {
+                // Show Info modal when user tries to upload images of non-landscape orientation 
+                // Similar to the source https://stackoverflow.com/a/41063194/10928662
+                const img = new Image();
+                img.onload = function () {
+                    const height = this.height;
+                    const width = this.width;
+                    URL.revokeObjectURL(this.src);
+                    if (height > width || width == height) {
+                        updateAndToggleInfoModal('Recommended image orientation',
+                            'To ensure your image is best displayed we recommend uploading images in a landscape orientation.',
+                            'Okay');
+                        return true;
+                    }
+                    URL.revokeObjectURL(this.src);
+                    return false;
+                };
+                var objectURL = URL.createObjectURL(file);
+                img.src = objectURL;
+            }
         }
     });
 });

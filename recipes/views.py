@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.decorators.http import require_GET
 
 from accounts.models import UserAccount
 from .models import Recipe, Course
@@ -11,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 
 @login_required
+@require_GET
 def get_recipes(request):
     """A view to show all recipes that belongs to
     logged in user, with search queries and filtering"""
@@ -110,6 +112,7 @@ def edit_recipe(request, recipe_id):
 
 
 @login_required
+@require_GET
 def view_recipe(request, recipe_id):
     """View a recipe selected from All Recipes page"""
 

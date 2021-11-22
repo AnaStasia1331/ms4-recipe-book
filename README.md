@@ -50,7 +50,55 @@ As a website user, I want to:
 
 # Database Schema 
 
-Heroku deployment uses the PostgreSQL relational database, whereas in the development mode the project runs on SQLite3 provided by the Django framework by default.
+Heroku deployment uses the PostgreSQL relational database, whereas in the development mode the project runs on SQLite3 provided within the Django framework.
 
 The database schema:
 ![Schema](static/img/readme/)
+
+# Technologies Used
+
+The below list includes all of the languages, frameworks, tools, learning platforms and stock image websites I have used to create this project. 
+- [HTML](https://en.wikipedia.org/wiki/HTML5)
+- [CSS](https://en.wikipedia.org/wiki/CSS)
+- [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [Jquery](https://jquery.com/)
+- [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 
+    - imported and modified a free bootstrap theme ['Agency'](https://startbootstrap.com/theme/agency)
+- [Bootstrap filestyle plugin](https://markusslima.github.io/bootstrap-filestyle/)
+    - used for styling and validation of the image upload
+- [Python](https://www.python.org/downloads/release/python-3811/)
+- [Django - Python based webframework](https://www.djangoproject.com/)
+- [SQLite database](https://docs.djangoproject.com/en/3.2/ref/databases/#sqlite-notes)
+- [Django allauth for user authentication](https://django-allauth.readthedocs.io/en/latest/installation.html)
+- [Gunicorn - Python WSGI server for UNIX](https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/gunicorn/)
+- [Pillow plugin - Imaging Library](https://pillow.readthedocs.io/en/stable/)
+- [Stripe payment system](https://stripe.com/docs)
+- [Google cloud platform -> API console](https://console.cloud.google.com/)
+    - used for setting up Google authentication
+- [Gmail as SMTP server](https://mail.google.com/)
+    - for sending out verification/reset password and other emails 
+- [Heroku](https://dashboard.heroku.com/apps)
+    - used for the deployment of the website
+    - [Heroku Postrgres add on](https://elements.heroku.com/addons/heroku-postgresql)
+- [Git](https://git-scm.com/)
+- [GitHub](https://github.com/)
+- [Gitpod](https://www.gitpod.io/)
+- [Bootsnip](https://bootsnipp.com/snippets/GavAo)
+    - for the example of the Login/Register form 
+- [Unsplash](https://unsplash.com/)
+- [DesignEvo Free Logo Maker](https://www.designevo.com/)
+- [Flaticon](https://www.flaticon.com) 
+- [Pinetools](https://pinetools.com/darken-image)
+- [Google fonts](https://fonts.google.com/specimen/Quicksand)
+- [Fontawesome](https://fontawesome.com/)
+- [Balsamiq](https://balsamiq.com/wireframes/)
+- [ColorPick Eyedropper](https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg)
+- [Chrome dev tools](https://developers.google.com/web/tools/chrome-devtools)
+- [Code Institute learning platform](https://codeinstitute.net/)
+- [W3schools](https://www.w3schools.com/)
+- [Geekforgeeks](https://www.geeksforgeeks.org/)
+- [Stack Overflow](https://stackoverflow.com/)
+- [JavaScript validator](https://jshint.com/)
+- [Jigsaw](https://jigsaw.w3.org/css-validator/validator)
+- [W3C validator](https://validator.w3.org/)
+- [Python formatter](http://pep8online.com/)

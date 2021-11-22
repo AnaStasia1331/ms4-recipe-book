@@ -9,7 +9,8 @@ class Recipe(models.Model):
     class Meta:
         ordering = ['recipe_name']
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default='')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE, default='')
     course = models.ForeignKey('Course', on_delete=models.PROTECT)
     recipe_name = models.CharField(max_length=50)
     ingredients = models.TextField(null=True, blank=True)

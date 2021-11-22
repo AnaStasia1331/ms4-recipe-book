@@ -15,8 +15,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Course',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('course_choice', models.CharField(choices=[('breakfast', 'Breakfast'), ('lunch', 'Lunch'), ('dinner', 'Dinner'), ('snacks', 'Snacks'), ('desserts', 'Desserts'), ('others', 'Others')], max_length=15)),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('course_choice', models.CharField(choices=[('breakfast',
+                 'Breakfast'), ('lunch', 'Lunch'),
+                  ('dinner', 'Dinner'), ('snacks', 'Snacks'),
+                  ('desserts', 'Desserts'), ('others', 'Others')],
+                    max_length=15)),
             ],
             options={
                 'verbose_name_plural': 'Courses',
@@ -25,13 +30,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Recipe',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True,
+                 serialize=False, verbose_name='ID')),
                 ('recipe_name', models.CharField(max_length=50)),
                 ('ingredients', models.TextField()),
                 ('steps', models.TextField()),
                 ('preparation_time', models.CharField(max_length=5)),
-                ('image', models.ImageField(blank=True, null=True, upload_to='images/')),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.course')),
+                ('image', models.ImageField(blank=True, null=True,
+                 upload_to='images/')),
+                ('course',
+                 models.ForeignKey(
+                     on_delete=django.db.models.deletion.CASCADE,
+                     to='recipes.course')),
             ],
             options={
                 'ordering': ['recipe_name'],

@@ -8,7 +8,7 @@ class UserAccount(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.PROTECT)
     has_paid = models.BooleanField(default=False)
-    token = models.CharField(max_length=50, null=True, blank=True)
+    token = models.CharField(max_length=50)
 
     def __str__(self):
         return self.user.username

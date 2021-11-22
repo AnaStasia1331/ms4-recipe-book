@@ -15,7 +15,8 @@ class RecipeForm(forms.ModelForm):
                 'class': 'form-control',
                 'style': 'max-length: 50;',
                 'required': True,
-                'oninvalid': "this.setCustomValidity('Please fill in the recipe name field.')",
+                'oninvalid': "this.setCustomValidity('Please fill in the \
+                     recipe name field.')",
                 'oninput': "this.setCustomValidity('')"
             }),
             'course': Select(attrs={

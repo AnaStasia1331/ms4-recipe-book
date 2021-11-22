@@ -16,11 +16,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='recipe',
             name='user',
-            field=models.ForeignKey(default='', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                default='',
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='recipe',
             name='course',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='recipes.course'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to='recipes.course'),
         ),
     ]

@@ -26,3 +26,31 @@ The implementation provides intuitive user interface for creation of new recipes
 ## Wireframes
 The [wireframes](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/static/img/readme/wireframes) were created using Balsamiq tool.
 
+## User Stories 
+As a website user, I want to:
+
+1. access the website as an anonymous user and understand what it offers to users.
+2. be able to create a new account.
+3. be able to log into an existing account.
+4. be able to reset password.
+5. use the Google authentication to sign into the website account.
+6. be able to log out.
+7. be able to add/edit/delete recipes when I'm logged in.
+8. see only my own recipes.
+9. find an existing recipe based on the category/group it belongs to.
+10. search recipes via the search field.
+11. make one-time secure payment for using the website.
+12. my recipes are not visible when I'm an anonymous user.
+13. access the website from multiple devices of different sizes without major UI issues.
+
+## Nice-to-have features 
+
+1. User settings page with the option to edit username or email address and the reset password functionality. 
+2. As the next stage it could be the possibility to share recipes with other users.
+
+# Database Schema 
+
+Heroku deployment uses the PostgreSQL relational database, whereas in the development mode the project runs on SQLite3 provided by the Django framework by default.
+
+The database schema:
+![Schema](static/img/readme/)

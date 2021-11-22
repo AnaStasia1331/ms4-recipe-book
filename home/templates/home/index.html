@@ -11,7 +11,7 @@
                 <h3 class="section-subheading text-muted">Write up and store your cherished family recipes, add your
                     favorite dish or the dessert recipe you created yourself.</h3>
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'add_recipe' %}">
+                <a href="{% url 'add_recipe' %}#recipeForm">
                     <span class="fa-stack fa-4x">
                         <i class="fas fa-square fa-stack-2x text-primary"></i>
                         <i class="fas fa-pencil-alt fa-stack-1x fa-inverse"></i>
@@ -41,7 +41,7 @@
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Breakfast card-->
                     <div class="card">
-                        <a class="card-link" href="{% url 'get_recipes' %}?course=breakfast">
+                        <a class="card-link" href="{% url 'get_recipes' %}?course=breakfast#recipeCards">
                             <div class="card-hover"></div>
                             <img class="img-fluid" src="{% static 'img/breakfast.jpg' %}" alt="..." />
                         </a>
@@ -53,7 +53,7 @@
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Lunch card -->
                     <div class="card">
-                        <a class="card-link" href="{% url 'get_recipes' %}?course=lunch">
+                        <a class="card-link" href="{% url 'get_recipes' %}?course=lunch#recipeCards">
                             <div class="card-hover"></div>
                             <img class="img-fluid" src="{% static 'img/lunch.jpg' %}" alt="..." />
                         </a>
@@ -65,7 +65,7 @@
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <!-- Dinner card-->
                     <div class="card">
-                        <a class="card-link" href="{% url 'get_recipes' %}?course=dinner">
+                        <a class="card-link" href="{% url 'get_recipes' %}?course=dinner#recipeCards">
                             <div class="card-hover"></div>
                             <img class="img-fluid" src="{% static 'img/dinner.jpg' %}" alt="..." />
                         </a>
@@ -77,7 +77,7 @@
                 <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                     <!-- Snacks Card -->
                     <div class="card">
-                        <a class="card-link" href="{% url 'get_recipes' %}?course=snacks">
+                        <a class="card-link" href="{% url 'get_recipes' %}?course=snacks#recipeCards">
                             <div class="card-hover"></div>
                             <img class="img-fluid" src="{% static 'img/snack.jpg' %}" alt="..." />
                         </a>
@@ -89,7 +89,7 @@
                 <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                     <!-- Desserts card -->
                     <div class="card">
-                        <a class="card-link" href="{% url 'get_recipes' %}?course=desserts">
+                        <a class="card-link" href="{% url 'get_recipes' %}?course=desserts#recipeCards">
                             <div class="card-hover"></div>
                             <img class="img-fluid" src="{% static 'img/dessert.jpg' %}" alt="..." />
                         </a>
@@ -101,7 +101,7 @@
                 <div class="col-lg-4 col-sm-6">
                     <!-- Others card -->
                     <div class="card">
-                        <a class="card-link" href="{% url 'get_recipes' %}?course=others">
+                        <a class="card-link" href="{% url 'get_recipes' %}?course=others#recipeCards">
                             <div class="card-hover"></div>
                             <img class="img-fluid" src="{% static 'img/others.jpg' %}" alt="..." />
                         </a>

@@ -4312,9 +4312,7 @@ fieldset:disabled .btn {
   float: left;
   padding-right: 0.5rem;
   color: #6c757d;
-  content: var(--bs-breadcrumb-divider, "/")
-    /* rtl: var(--bs-breadcrumb-divider, "/") */
-  ;
+  content: var(--bs-breadcrumb-divider, "/");
 }
 
 .breadcrumb-item.active {
@@ -10530,7 +10528,6 @@ transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 /* Login page, mobile */
-
 @media screen and (max-width:500px){
   .logreg-forms{
       width:300px;

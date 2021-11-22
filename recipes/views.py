@@ -20,6 +20,7 @@ def get_recipes(request):
     course = None
 
     # Source: Code Institute Project - Boutique Ado
+    # Filter by course name and query text
     if 'course' in request.GET:
         course = request.GET['course'].split(',')
         recipes = Recipe.objects.filter(
@@ -50,7 +51,9 @@ def get_recipes(request):
 
 @login_required
 def add_recipe(request):
-    """ A view to add a new recipe """
+    """ A view to add a new recipe, count how many recipes user has
+    (on 4th recipe user must make payment)
+    and check if user has already paid """
     if request.method == 'POST':
         if request.user.is_authenticated:
             form = RecipeForm(request.POST, request.FILES)
@@ -67,7 +70,8 @@ def add_recipe(request):
         form = RecipeForm()
 
     courses = Course.objects.all()
-    # On the 4th recipe creation, the modal window will be displayed
+    # Count how many recipes user has. On the 4th recipe creation,
+    # the modal window will be displayed
     # asking to make a payment for the website.
     recipe_count = Recipe.objects.filter(user=request.user).count()
 

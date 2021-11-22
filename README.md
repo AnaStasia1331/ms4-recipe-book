@@ -7,8 +7,8 @@
 - [Deployment](#deployment)
 - [Credits](#credits)
 
-# My Recipe Book site 
-My Recipe Book represents a full-stack web application that uses the relational database PostgreSQL, the Django full stack MVC framework. The project also includes setup of the authentication mechanism and checkout system.
+# My Recipe Book website 
+My Recipe Book represents a full-stack web application that uses the relational database PostgreSQL, the Django full stack MVC framework. The project also includes setup of the authentication mechanism and checkout system. With permission from Code Institute the idea for this project was taken from the MS3 study project with the goal to improve My Recipe book website by simplifying it (e.g. course pages are deprecated) and extedning with the new functionality.
 
 ![screen shots on various devices](static/img/readme/am-i-responsive.PNG)
 
@@ -80,6 +80,8 @@ The below list includes all of the languages, frameworks, tools, learning platfo
 - [Heroku](https://dashboard.heroku.com/apps)
     - used for the deployment of the website
     - [Heroku Postrgres add on](https://elements.heroku.com/addons/heroku-postgresql)
+- [AWS S3](https://aws.amazon.com/s3/)
+    - for storing static files in production environment
 - [Git](https://git-scm.com/)
 - [GitHub](https://github.com/)
 - [Gitpod](https://www.gitpod.io/)
@@ -102,3 +104,21 @@ The below list includes all of the languages, frameworks, tools, learning platfo
 - [Jigsaw](https://jigsaw.w3.org/css-validator/validator)
 - [W3C validator](https://validator.w3.org/)
 - [Python formatter](http://pep8online.com/)
+
+
+
+
+
+# Credits
+
+## Code
+I'd like to give the major credits to:
+ - [Bootstrap free theme 'Agency'](https://startbootstrap.com/theme/agency) was used in the project with written HTML, CSS and JS files. The theme was significantly adapted for the needs of the project.
+ - the module project [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) from Code Institute.
+ - [Login/Register] form implementation on Bootsnip (https://bootsnipp.com/snippets/GavAo).
+ - GeekforGeeks, Stackoverflow and W3schools website for ideas of validation cases and bug fixing.
+
+## Media
+- To make the website look colorful and attractive, several images were used from [Unsplash](https://unsplash.com/). Dark filter was applied on the top of some images with the help of [Pinetools](https://pinetools.com/darken-image)
+- Recipe card image (chef cap) was designed in the tool [DesignEvo Free Logo Maker](https://www.designevo.com/)
+- [Flaticon](https://www.flaticon.com) allowed to create the logo.

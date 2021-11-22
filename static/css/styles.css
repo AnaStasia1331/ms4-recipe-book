@@ -10185,6 +10185,10 @@ p {
   margin-bottom: 3.5rem;
 }
 
+.page-section h3.section-subheading span {
+  font-size: 0.875rem;
+}
+
 @media (min-width: 768px) {
   section {
     padding: 9rem 0;

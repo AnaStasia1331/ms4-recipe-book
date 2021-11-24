@@ -105,8 +105,31 @@ The below list includes all of the languages, frameworks, tools, learning platfo
 - [W3C validator](https://validator.w3.org/)
 - [Python formatter](http://pep8online.com/)
 
+# Testing
 
+## Test environments
+Google Chrome dev tool was used during development to make sure the website is responsive and doesn't contain console errors. The final testing of the deployed site was performed on the devices:
+- MacBook Pro (16-inch, 2019), 3072 x 1920 screen resolution, Google Chrome browser.
+- Iphone 13 Pro with 1170 x 2532 screen resolution, Safari browser.
 
+## Testing User Stories from User Experience (UX) Section
+
+The detailed test cases and the results can be found in [TESTING.md](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/TESTING.md) file.
+
+## Major bugs discovered and fixed:
+1. 
+
+## Known bugs:
+1. 
+
+## Further Testing:
+
+- [W3C Markup Validator](https://validator.w3.org/) was used to validate every HTML page of the project on syntax error. No issues have been detected.
+- [Jigsaw](https://jigsaw.w3.org/css-validator/) service was used to validate css files. There are some warnings, 1 type of error known as an open defect https://github.com/w3c/css-validator/issues/305 in the validator
+- Run the JS files through [Jshint](https://jshint.com/) linter, there are warnings but no major issues.
+- [Python validator](http://pep8online.com/) warned about lines being too long.
+- Dev tool in Google Chrome was used to check on console errors. 
+- testing of the README links was performed.
 
 
 # Credits

@@ -53,7 +53,7 @@ As a website user, I want to:
 Heroku deployment uses the PostgreSQL relational database, whereas in the development mode the project runs on SQLite3 provided within the Django framework.
 
 The database schema:
-![Schema](static/img/readme/)
+![Schema](static/img/readme/db-schema.png
 
 # Technologies Used
 

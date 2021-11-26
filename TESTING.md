@@ -94,13 +94,13 @@
         7.1.11. Expected: user can cancel the recipe creation.    
         7.1.11. Testing: Click the Cancel button -> from Add a New Recipe form the user is redirected back the page visited earlier.    
         7.1.12. Expected: user can save a new recipe successfully.    
-        7.1.12. Testing: Fill in all required and optional fields in the form, upload an image in a landscape orientation and click the Save button. -> User is redirected to All Recipes page, he can find her/his recipe on the page with the correct title, displayed image and the course name. When he opens the recipe, he can see that it contains all text/selection filled in earlier.     
+        7.1.12. Testing: Fill in all required and optional fields in the form, upload an image in a landscape orientation and click the Save button. -> User is redirected to My Recipes page, he can find her/his recipe on the page with the correct title, displayed image and the course name. When he opens the recipe, he can see that it contains all text/selection filled in earlier.     
     7.2. Edit an existing recipe.    
         7.2.1. Expected: user is able to update any field of the edit form.     
         7.2.1. Testing: Find an existing recipe, press the Edit icon and try to edit Recipe Name, Courses, Ingredients, Steps, Preparation Time and reupload an image. -> All mentioned places are editable.     
         ![Edit recipe form](static/img/readme/testing/edit-recipe.png)       
         7.2.2. Expected: user is able to update the edit form successfully.         
-        7.2.2. Testing: Edit Recipe Name, Courses, Ingredients, Steps, Preparation Time, Image and click the Save button. -> User is redirected to All Recipes page, can find her/his recipe (with changed name, course and image) and when press the View or Edit icons s/he can see that the previously made changes were applied.       
+        7.2.2. Testing: Edit Recipe Name, Courses, Ingredients, Steps, Preparation Time, Image and click the Save button. -> User is redirected to My Recipes page, can find her/his recipe (with changed name, course and image) and when press the View or Edit icons s/he can see that the previously made changes were applied.       
         7.2.3. Expected: user is able to cancel form editing.     
         7.2.3. Testing: Edit an existing recipe and click the Cancel button. -> User is redirected to the previously visited page, when he reopens the recipe he can't see the change he made before pressing the Cancel button.     
     7.3. View an existing recipe.    
@@ -112,11 +112,29 @@
         7.3.3. Expected: user is able to view an existing recipe and close the view mode.    
         7.3.3. Testing: Open a recipe in the view mode and press the Back button. -> User is redirected back to the previously visited page.    
     7.4. Delete recipe.     
-        7.4.1. Expected: user can select a recipe on All Recipes page and click the Delete icon.     
+        7.4.1. Expected: user can select a recipe on My Recipes page and click the Delete icon.     
         7.4.1. Testing: Find an existing recipe, press the Delete icon. -> The Confirm delete popup opens for the selected recipe.    
         ![Confirm delete popup](static/img/readme/testing/delete-popup.png)           
         7.4.2. Expected: user can delete an existing recipe.    
-        7.4.2. Testing: Find an existing recipe, press the Delete icon, confirm the action -> the popup is closed, the recipe has been deleted. It cannot be found on the All Recipes page.    
+        7.4.2. Testing: Find an existing recipe, press the Delete icon, confirm the action -> the popup is closed, the recipe has been deleted. It cannot be found on the My Recipes page.    
         7.4.3. Expected: user can cancel the delete action from the Confirm delete popup.       
-        7.4.3. Testing: Find an existing recipe, press the Delete icon, cancel the action -> the popup is closed, the recipe has not been removed from the All Recipes page.    
-
+        7.4.3. Testing: Find an existing recipe, press the Delete icon, cancel the action -> the popup is closed, the recipe has not been removed from the My Recipes page.    
+8. User sees only her/his own recipes.
+    8.1. Expected: user sees only her/his own recipes.        
+    8.1. Testing: 1. Login as user A, create a recipe. -> Recipe is available on My Recipes page. 2. Login as user B, open My Recipes page and check if the recipes of user A can be seen. -> User B cannot see the recipes of user A. BUG: if copy the edit or view urls of a particular recipe of user A and try to navigate to them as user B, you can see the recipe details.     
+9. User can find an existing recipe based on the course it belongs to.    
+    9.1. Expected: user can filter recipes by course.    
+    9.1. Testing: Open My Recipes page, note the course assigned to a particular recipe, e.g. breakfast. Use 'Filter by course' dropdown to select specific course (breakfast). -> Only recipes in the selected course are displayed on the page.       
+    9.2. Expected: user can select 'All recipes' in the 'Filter by course' dropdown.       
+    9.2. Testing: Open the 'Filter by course' dropdown and select 'All recipes'. -> All existing for this user recipes are shown again.  
+    9.3. Expected: user is informed when filtering by course didnt bring any results.       
+    9.3. Testing: Open the 'Filter by course' dropdown and select the course that doesnt have any recipe attached. -> No recipes are shown, only the message 'Your search didn't bring back any recipes.'.    
+    9.4. Expected: user can filter recipes by selecting a course from the Home page.       
+    9.4. Testing: Navigate to the Home page, go to the Course section, click a course card. -> User is sent to My Recipes page with the recipes filtered by the selected course (if exist).    
+10. User can search recipes via the search field.    
+    10.1. Expected: user can find recipe by entering name/course in the search field.        
+    10.1. Testing: Open All Recipes page, enter recipe name or course name (fully or partially) and search. -> The result returns the recipe(s) that has/have matching recipe or course name.    
+    10.2. Expected: user can reset the search field results.    
+    10.2. Testing: Clear the search field and press the magnifying glass icon. -> All recipes are displayed.   
+    10.3. Expected: user is informed when the search didnt bring any results.    
+    10.3. Testing:  Enter a non-existing recipe/course name and search. -> No recipes are shown, only the message 'Your search didn't bring back any recipes.'.    

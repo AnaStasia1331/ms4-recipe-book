@@ -3,7 +3,7 @@
     1.1. Testing: Open a new browser tab, access the url https://ms4-recipe-book.herokuapp.com/ -> Home page is displayed as described in the expected result.
     ![Home page UI for anonymous user](static/img/readme/testing/home-page-anonym-user.png)    
     1.2. Expected: when anonymous user tries to create a new recipe he will be redirected to the Login/Sign Up page.    
-    1.2. Testing: 1. Select the navbar item Add a new recipe -> Login/Sign Up page is opened. 2. Click on the pen icon in ADD A NEW RECIPE section -> Login/Sign Up page is opened.    
+    1.2. Testing: 1. Select the navbar item Add a new recipe -> Login/Sign Up page is opened. 2. Click on the pencil icon in the ADD A NEW RECIPE section -> Login/Sign Up page is opened.    
     1.3. Expected: anonymous user is properly informed what is the purpose of the website and what are the terms of using it.    
     1.3. Testing: Home page header displays the text informing that it's an online recipe book where user can collect and organize her/his favorite recipes on the website. ADD A NEW RECIPE section indicates that after creating 3 recipes, user will be asked to pay once.    
 2. Unregistered user can create a new account.    
@@ -50,7 +50,7 @@
     4.5. Testing: 1. Enter valid but registered before email address and press Confirm. -> User is redirected to the Successful reset password page and asked to check her/his email box. 2. Check if the reset password email was received by the user. -> The new email with the subject 'Password Reset Email' arrived. 3. Click the reset password link from the email. -> The website is opened and displays the Change Password form. 4. Leave both password fields blank and submit the form. -> 'Please fill in this field' message is shown. 5. Enter mismatching passwords and submit the form. -> The password reset process wasn't completed and the form is reset. BUG: there is no errror message is displayed to the user, the form is just reset. 6. Enter matching password and submit. -> User is redirected to the next page informing that the password was changed successfully. 7. Click the Go back to Login page link and enter valid credentials with the updated password. -> The user can login successfully.    
     4.6. Expected: the reset password link cannot be used twice, after password was reset.    
     4.6. Testing: 1. Come back to the Password Reset email and try to reset the password second time. -> The new page is opened, however user sees the message that the password reset link was invalid, possibly because it has already been used. 2. Staying on the same page, click the link 'Please request a new password reset.' -> Reset Password form is loaded.    
-    ![Successful reset password page](static/img/readme/testing/successful-reset-pw-page.png)    
+    ![Successful reset password page](static/img/readme/testing/successful-pw-reset-page.png)    
     ![Change password page](static/img/readme/testing/change-pw-page.png)    
     ![Successfull password reset page](static/img/readme/testing/successful-change-pw-page.png)  
     ![Invalid password reset link](static/img/readme/testing/bad-token.png)    
@@ -65,3 +65,58 @@
     6.2. Expected: being logged into the website, authenticated user can log out.    
     6.2. Testing: Sign into the website in a regular way (by using username and password), click on the Welcome, (username) and select the Logout option. -> Home page is displayed with the updated navbar links: e.g. instead of Welcome, (username) there is Login/Sign Up link.   
 7. Uset can add/edit/delete recipes when he is logged in.    
+    7.1. Add a new recipe.               
+        7.1.1. Expected: logged in user can access the Add a new recipe page.    
+        7.1.1. Testing: 1. Make sure the user is logged in, click Add a new recipe link in the nav bar or the pencil icon in the ADD A NEW RECIPE section. -> Add A New Recipe form is opened with 2 buttons: Cancel and Save. 2. When already logged, navigate to this url https://ms4-recipe-book.herokuapp.com/recipes/add/  -> Add A New Recipe form is opened.
+        ![Add new recipe form](static/img/readme/testing/add-new-recipe.png)        
+        7.1.2. Expected: unauthorised user cannot access the Add a new recipe page.    
+        7.1.2. Testing: Make sure the user is logged out, navigate to this url https://ms4-recipe-book.herokuapp.com/recipes/add/ -> The user is redirected to the Login page.    
+        7.1.3. Expected: when user forgets to add a title to a recipe, the new recipe can't be created.    
+        7.1.3. Testing: Leave the Recipe Name field empty and try to save the recipe -> user is asked to fill in the field and the recipe wasn't saved. 
+        BUG: 'Please fill in the recipe name field' message appears only when the cursor is located in the field and after pressing the submit key.    
+        7.1.4. Expected: recipe name field can include no more than 50 characters.    
+        7.1.4. Testing: Try to add recipe name containing more than 50 char.  -> After 50th character typing is not possible.   
+        7.1.5. Expected: user can select any course type from the Courses dropdown.    
+        7.1.5. Testing: 1. Click the dropdown -> all 6 course types are visible in the dropdown. 2. Select a value from the dropdown -> the correct value is selected.    
+        7.1.6. Expected: user can paste/type large amount of text in Ingredients and Steps textarea.    
+        7.1.6. Testing: Paste a long text (more than 2000 characters) -> the long text is accepted.    
+        7.1.7. Expected: user can set preparation time.    
+        7.1.7. Testing: Select a half an hour or an hour as cooking time -> the correct time is set.    
+        7.1.8. Expected: user cannot upload image of unsupported format.    
+        7.1.8. Testing: Try to upload a gif file. -> The popup appears informing that 'Only files with the following extensions are allowed: jpg, jpeg, png.'. The file wasn't uploaded.
+        ![Invalid file type](static/img/readme/testing/invalid-file-type.png)        
+        7.1.9. Expected: user cannot upload image more than 4MB.    
+        7.1.9. Testing: Try to upload file of the size more than 4MB. -> The popup appears informing that 'Maximum file size must be 4MB.'. The file wasn't uploaded.    
+        ![Too large file](static/img/readme/testing/large-file.png)    
+        7.1.10. Expected: user gets recommendation on image orientation on image upload.    
+        7.1.10. Testing: Try to upload image of square or portrait orientation. -> The popup appears informing that 'To ensure your image is best displayed we recommend uploading images in a landscape orientation.'     
+        ![Recommended image orientation](static/img/readme/testing/image-orientation.png)    
+        7.1.11. Expected: user can cancel the recipe creation.    
+        7.1.11. Testing: Click the Cancel button -> from Add a New Recipe form the user is redirected back the page visited earlier.    
+        7.1.12. Expected: user can save a new recipe successfully.    
+        7.1.12. Testing: Fill in all required and optional fields in the form, upload an image in a landscape orientation and click the Save button. -> User is redirected to All Recipes page, he can find her/his recipe on the page with the correct title, displayed image and the course name. When he opens the recipe, he can see that it contains all text/selection filled in earlier.     
+    7.2. Edit an existing recipe.    
+        7.2.1. Expected: user is able to update any field of the edit form.     
+        7.2.1. Testing: Find an existing recipe, press the Edit icon and try to edit Recipe Name, Courses, Ingredients, Steps, Preparation Time and reupload an image. -> All mentioned places are editable.     
+        ![Edit recipe form](static/img/readme/testing/edit-recipe.png)       
+        7.2.2. Expected: user is able to update the edit form successfully.         
+        7.2.2. Testing: Edit Recipe Name, Courses, Ingredients, Steps, Preparation Time, Image and click the Save button. -> User is redirected to All Recipes page, can find her/his recipe (with changed name, course and image) and when press the View or Edit icons s/he can see that the previously made changes were applied.       
+        7.2.3. Expected: user is able to cancel form editing.     
+        7.2.3. Testing: Edit an existing recipe and click the Cancel button. -> User is redirected to the previously visited page, when he reopens the recipe he can't see the change he made before pressing the Cancel button.     
+    7.3. View an existing recipe.    
+        7.3.1. Expected: user is able to view an existing recipe but can't update the recipe in the view mode.        
+        7.3.1. Testing: Find an existing recipe, press the View icon try to edit Recipe Name, Courses, Ingredients, Steps, Preparation Time, Image -> all mentioned places are for read only and can't be updated.   
+        ![View recipe form](static/img/readme/testing/view-recipe.png)           
+        7.3.2. Expected: user is able to view an existing recipe and proceed to the edit mode.     
+        7.3.2. Testing: Open a recipe in the view mode and press the Edit button. -> User is redirected to the Edit Recipe page for the same recipe.      
+        7.3.3. Expected: user is able to view an existing recipe and close the view mode.    
+        7.3.3. Testing: Open a recipe in the view mode and press the Back button. -> User is redirected back to the previously visited page.    
+    7.4. Delete recipe.     
+        7.4.1. Expected: user can select a recipe on All Recipes page and click the Delete icon.     
+        7.4.1. Testing: Find an existing recipe, press the Delete icon. -> The Confirm delete popup opens for the selected recipe.    
+        ![Confirm delete popup](static/img/readme/testing/delete-popup.png)           
+        7.4.2. Expected: user can delete an existing recipe.    
+        7.4.2. Testing: Find an existing recipe, press the Delete icon, confirm the action -> the popup is closed, the recipe has been deleted. It cannot be found on the All Recipes page.    
+        7.4.3. Expected: user can cancel the delete action from the Confirm delete popup.       
+        7.4.3. Testing: Find an existing recipe, press the Delete icon, cancel the action -> the popup is closed, the recipe has not been removed from the All Recipes page.    
+

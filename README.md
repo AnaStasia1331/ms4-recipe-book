@@ -104,6 +104,7 @@ The below list includes all of the languages, frameworks, tools, learning platfo
 - [Jigsaw](https://jigsaw.w3.org/css-validator/validator)
 - [W3C validator](https://validator.w3.org/)
 - [Python formatter](http://pep8online.com/)
+- [Temporary emails for testing](https://temp-mail.org/)
 
 # Testing
 
@@ -114,15 +115,17 @@ Google Chrome dev tool was used during development to make sure the website is r
 
 ## Testing User Stories from User Experience (UX) Section
 
-The detailed test cases and the results can be found in [TESTING.md](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/TESTING.md) file.
+The detailed test cases and the results can be found in [TESTING.md](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/TESTING.md) file. The tests numbering (up to 13) matches the user story numbering. 
 
-## Major bugs discovered and fixed:
-1. 
+## Bugs discovered and fixed:
+Some major and minor bugs were found and fixed when working on the project. Among them incorrect redirection to Stripe, mistakenly shown error messages, failure on sending out emails, css issues and others. 
 
 ## Known bugs:
-1. 
+1. No errror message is displayed to a user on the Change Password form, when the user enters mismatching password (the form is just reset). See the details of the defect under the test 4.5.
+2. 'Please fill in the recipe name field' message appears only when the cursor is located in the field and after pressing the submit key. See the details of the defect under the test 7.1.3.
+3. Edit or view recipe urls of user A can be accessed by user B. See the details of the defect under the test 8.1.
 
-## Further Testing:
+## Code Validation (draft):
 
 - [W3C Markup Validator](https://validator.w3.org/) was used to validate every HTML page of the project on syntax error. No issues have been detected.
 - [Jigsaw](https://jigsaw.w3.org/css-validator/) service was used to validate css files. There are some warnings, 1 type of error known as an open defect https://github.com/w3c/css-validator/issues/305 in the validator

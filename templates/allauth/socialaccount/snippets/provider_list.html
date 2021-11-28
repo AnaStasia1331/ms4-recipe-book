@@ -15,7 +15,7 @@
 {% endif %}
   <a title="{{provider.name}}" class="socialaccount_provider {{provider.id}}" 
      href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"
-     ><button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span>
-    </button>
+     ><div class="btn google-btn social-btn"><span><i class="fab fa-google-plus-g"></i> Sign in with Google+</span>
+     </div>
   </a>
 {% endfor %}

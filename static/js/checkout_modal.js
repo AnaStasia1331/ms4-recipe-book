@@ -10,6 +10,6 @@ $(document).ready(function(){
         keyboard: false
     });
     // open the modal window automatically
-    $('#checkoutModal').modal('toggle')
+    $('#checkoutModal').modal('toggle');
 });
 

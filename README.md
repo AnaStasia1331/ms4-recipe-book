@@ -237,7 +237,107 @@ heroku config:set DISABLE_COLLECTSTATIC=1 --app ms4-recipe-book
 My project is accessible via this link https://ms4-recipe-book.herokuapp.com/
 
 ## Static and Media files in AWS
+- Create a new [AWS account](https://portal.aws.amazon.com/billing/signup#/start). Note that while registering you'll be asked to to enter credit card info that can be used for billing if you exceed the free usage threshold.
+- Go back to aws.amazon.com and login to your account.
+- Open AWS management console and using the search field find s3.
+- Open s3 and create a new bucket to store static/media files.
+    - Enter bucket name.
+    - Select a region (the closest to you).
+    - Deselect block all public access and acknowledge that the bucket will be public.
+    - Click create bucket.
+- Open the new bucket on the Properties tab and enable Static website hosting.
+- On the Permissions tab, CORS configurations add the required access settings between Heroku and the s3 bucket:
+```
+[
+    {
+        "AllowedHeaders": [
+            "Authorization"
+        ],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
+    }
+]
+```
+- In the Bucket Policy tab, select policy generator.
+- Select type of policy 's3 bucket policy'.
+- In Principal add a *
+- In Actions add 'GetObject'.
+- Find on the previous page and fill in Amazon resource name.
+- Click 'Add statement' and then 'Generate policy'.
+- Copy the policy code and paste it into the bucket policy editor.
+- To allow access to all resources add a slash star to the end of the resource key. Save.
+- In the Access Control List section for Everyone select 'List' and 'Read'.
+- Search for a new service 'IAM'.
+- Navigate to 'User groups' and click 'Create group'
+- Create a policy by navigating to 'policies' and click 'Create policy'.
+- Open the 'JSON' tab and click 'Import managed policy'
+- Search for s3 and then import the s3 full access policy.
+- Change the resource value '*' with your bucket ARN from the bucket policy page:
+```
+ "Resource": [
+                "arn:aws:s3:::ms4-recipe-book",
+                "arn:aws:s3:::ms4-recipe-book/*"
+            ]
+```
+- Click 'Review policy', name it and click 'Create policy'.
+- Navigate back to 'User groups', select your group and in the Permissions tab attach the created policy.
+- Navigate to 'users' and click 'Add users'.
+- Enter username, select AWS credential type - programmatic access and proceed next.
+- Assign the group you created and click 'Next' then click through to the end and click 'Create user'.
+- Download the CSV file that contains the user's access key and secret access key.
+- In your project terminal install two new packages and freeze them:
+```
+pip3 install boto3 
+pip3 install django-storages
+pip3 freeze > requirements.txt
+```
+- In *settings.py*, add 'storages' to the installed apps list.
+- Below in the *settings.py* configure:
+```
+if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'ms4-recipe-book'
+    AWS_S3_REGION_NAME = 'eu-central-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+```
+- Create a file called custom_storages.py with the content below:
+```
+from django.conf import settings
+from storages.backends.s3boto3 import S3Boto3Storage
 
+
+class StaticStorage(S3Boto3Storage):
+    location = settings.STATICFILES_LOCATION
+
+
+class MediaStorage(S3Boto3Storage):
+    location = settings.MEDIAFILES_LOCATION
+
+```
+- Go back to the *settings.py* and under the Bucket config settings add:
+```
+# Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+```
 
 # Credits
 

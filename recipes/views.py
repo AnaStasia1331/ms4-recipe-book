@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_GET
-
+from django.core.exceptions import PermissionDenied
 from accounts.models import UserAccount
 from .models import Recipe, Course
 from .forms import RecipeForm
@@ -95,6 +95,8 @@ def edit_recipe(request, recipe_id):
     """Edit a recipe selected from All Recipes page"""
 
     recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if recipe.user != request.user:
+        raise PermissionDenied
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
@@ -121,6 +123,8 @@ def view_recipe(request, recipe_id):
     """View a recipe selected from All Recipes page"""
 
     recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if recipe.user != request.user:
+        raise PermissionDenied
     form = RecipeForm(instance=recipe)
 
     context = {
@@ -136,6 +140,8 @@ def delete_recipe(request, recipe_id):
     """Delete a recipe selected from All Recipes page"""
 
     recipe = get_object_or_404(Recipe, pk=recipe_id)
+    if recipe.user != request.user:
+        raise PermissionDenied
     recipe.delete()
 
     return redirect('get_recipes')

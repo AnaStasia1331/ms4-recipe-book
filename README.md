@@ -8,7 +8,7 @@
 - [Credits](#credits)
 
 # My Recipe Book website 
-My Recipe Book represents a full-stack web application that uses the relational database PostgreSQL, the Django full stack MVC framework. The project also includes setup of the authentication mechanism and checkout system. With permission from Code Institute the idea for this project was taken from the MS3 study project with the goal to improve My Recipe book website by simplifying it (e.g. course pages are deprecated) and extedning with the new functionality.
+My Recipe Book represents a full-stack web application that uses the relational database PostgreSQL, the Django full stack MVC framework. The project also includes setup of the authentication mechanism and checkout system. With permission from Code Institute the idea for this project was taken from the MS3 study project with the goal to possibly use it as a business idea later. In MS4 I re-wrote My Recipe book website in the different framework, improved it by simplifying some user flows (e.g. course pages are deprecated) and extended it with the new functionality.
 
 ![screen shots on various devices](static/img/readme/am-i-responsive.PNG)
 
@@ -21,7 +21,10 @@ For users who want to create and manage their recipes online.
 They need a simple way to write down new cooking recipes in an online recipe book, be able to find them, edit or delete.
 
 ## How does the project fulfil the users’ needs?
-The implementation provides intuitive user interface for creation of new recipes. The website requests users to be authenticated and authorised in order to manage their own recipes. Add recipe page lists all necessary fields for writing a new recipe, e.g. recipe name, course name, ingredients, preparation steps and time. Additionally image upload option is available for users. For quick and easy search, users can use either the course cards from Home page or the search field and 'Filter by Course' dropdown located on My recipes page. Each recipe can be modified and removed. The site is functioning on desktop as well as on mobile devices.
+The implementation provides intuitive user interface for creation of new recipes.    
+The website requests users to be authenticated and authorised in order to manage their recipes. To save time on new account registration, Google authentication can be used from the Login page.    
+Add recipe page lists all necessary fields for writing a new recipe, e.g. recipe name, course name, ingredients, preparation steps and time. Additionally, image upload option is available to link a favourite recipe image to recipe. For quick and easy search, the course cards can be used from the Home page or the search field and 'Filter by Course' dropdown located on the My recipes page. Each recipe can be modified and removed.    
+The site is functioning on desktop as well as on mobile devices.
 
 ## Wireframes
 The [wireframes](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/static/img/readme/wireframes) were created using Balsamiq tool.
@@ -115,15 +118,14 @@ Google Chrome dev tool was used during development to make sure the website is r
 
 ## Testing User Stories from User Experience (UX) Section
 
-The detailed test cases and the results can be found in [TESTING.md](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/TESTING.md) file. The tests numbering (up to 13) matches the user story numbering. 
+The detailed test cases and the results can be found in [TESTING.md](https://github.com/AnaStasia1331/ms4-recipe-book/tree/master/TESTING.md) file. The tests numbering (up to 13) matches the user stories numbering. 
 
 ## Bugs discovered and fixed:
-Some major and minor bugs were found and fixed when working on the project. Among them incorrect redirection to Stripe, mistakenly shown error messages, failure on sending out emails, css issues and others. 
+Some major and minor bugs were found and fixed when working on the project. Among them incorrect redirection to Stripe, mistakenly shown error messages, failure on sending out emails, css issues and others. The latest fix was done for the bug: edit or view recipe urls of user A can be accessed by user B.
 
 ## Known bugs:
 1. No errror message is displayed to a user on the Change Password form, when the user enters mismatching password (the form is just reset). See the details of the defect under the test 4.5.
 2. 'Please fill in the recipe name field' message appears only when the cursor is located in the field and after pressing the submit key. See the details of the defect under the test 7.1.3.
-3. Edit or view recipe urls of user A can be accessed by user B. See the details of the defect under the test 8.1.
 
 ## Code Validation:
 
@@ -226,7 +228,7 @@ heroku config:set DISABLE_COLLECTSTATIC=1 --app ms4-recipe-book
 | DATABASE_URL          | add your value here                   |
 | EMAIL_HOST_PASS       | add your value here                   |
 | EMAIL_HOST_USER       | add your value here                   |
-| ON_HEROKU             | leave empty                           |
+| ON_HEROKU             | True                                  |
 | SECRET_KEY            | add your value here                   |
 | STRIPE_API_KEY        | add your value here                   |
 | USE_AWS               | True                                  |
@@ -342,10 +344,10 @@ class MediaStorage(S3Boto3Storage):
 # Credits
 
 ## Code
-I'd like to give the major credits to:
+I'd like to give major credits to:
  - [Bootstrap free theme 'Agency'](https://startbootstrap.com/theme/agency) was used in the project with written HTML, CSS and JS files. The theme was significantly adapted for the needs of the project.
  - the module project [Boutique Ado](https://github.com/Code-Institute-Solutions/boutique_ado_v1) from Code Institute.
- - [Login/Register] form implementation on Bootsnip (https://bootsnipp.com/snippets/GavAo).
+ - [LoginRegister form implementation on Bootsnip](https://bootsnipp.com/snippets/GavAo).
  - [Setup of django-google-oauth](https://www.section.io/engineering-education/django-google-oauth/)
  - GeekforGeeks, Stackoverflow and W3schools website for ideas of validation cases and bug fixing.
 

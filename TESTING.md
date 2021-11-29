@@ -121,7 +121,7 @@
         7.4.3. Testing. Find an existing recipe, press the Delete icon, cancel the action -> the popup is closed, the recipe has not been removed from the My Recipes page.    
 8. User sees only her/his own recipes.
     8.1. Expected: user sees only her/his own recipes.        
-    8.1. Testing. 1. Login as user A, create a recipe. -> Recipe is available on My Recipes page. 2. Login as user B, open My Recipes page and check if the recipes of user A can be seen. -> User B cannot see the recipes of user A. BUG: if copy the edit or view urls of a particular recipe of user A and try to navigate to them as user B, you can see the recipe details.     
+    8.1. Testing. 1. Login as user A, create a recipe. -> Recipe is available on My Recipes page. 2. Login as user B, open My Recipes page and check if the recipes of user A can be seen. -> User B cannot see the recipes of user A. 3. Copy the edit or view urls of a particular recipe of user A and try to navigate to them as user B -> 403 Permission Denied error page will be displayed to user B.     
 9. User can find an existing recipe based on the course it belongs to.    
     9.1. Expected: user can filter recipes by course.    
     9.1. Testing. Open My Recipes page, note the course assigned to a particular recipe, e.g. breakfast. Use 'Filter by course' dropdown to select specific course (breakfast). -> Only recipes in the selected course are displayed on the page.       
